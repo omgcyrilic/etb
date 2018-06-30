@@ -63,6 +63,7 @@ class Restaurant extends React.PureComponent {
         </Head>
         <section>
           <img src={'/static/img/logo.png'} className={'logo'} />
+          <img src={'/static/img/logo-stacked.png'} className={'logo stacked'} />
         </section>
         {isOpen && (
           <Lightbox
@@ -84,18 +85,20 @@ class Restaurant extends React.PureComponent {
             }
           />
         )}
-        <section key={post.id} className={'restaurant single'  + getWowClass(this.window)} data-wow-duration=".5s">
-          <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-          <img src={'/static/img/' + getCategoryIcon(post.section) + '.png'} className={'icon'}/>          
-          <div className={'address'}>
-            <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
-          </div>
-          <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
-            <img src={'/static/img/' +  post.imgthumb}/>
-          </button>
-          <div className={'copy'}>
-            <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                
-          </div>
+        <section className={'restaurant-list'}>
+          <section key={post.id} className={'restaurant single '  + getWowClass(this.window)} data-wow-duration=".5s">
+            <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+            <img src={'/static/img/' + getCategoryIcon(post.section) + '.png'} className={'icon'}/>          
+            <div className={'address'}>
+              <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
+            </div>
+            <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
+              <img src={'/static/img/' +  post.imgthumb}/>
+            </button>
+            <div className={'copy'}>
+              <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                
+            </div>
+          </section>
         </section>
       </div>
     );

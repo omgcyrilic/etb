@@ -90,10 +90,10 @@ p {
   line-height: 26px;
 }
 main {
-  background-image: url(/static/img/dallas-map.jpg);
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: 1642px 1200px;
+  // background-image: url(/static/img/dallas-map.jpg);
+  // background-position: top center;
+  // background-repeat: no-repeat;
+  // background-size: 1642px 1200px;
   padding-top: 40px;
   text-align: center;
 }
@@ -218,6 +218,10 @@ footer {
         color: $bright-yellow;
         margin: 0 0 15px 0;
         padding: 0;
+      }
+      h2 {
+        color: $bright-yellow;
+        font-size: 30px;
       }
       .address {
         margin: 0 0 10px 0;
