@@ -82,6 +82,11 @@ module.exports =
 
 
 var endpoint = 'https://api.eatthisbeef.com/wp-json';
+
+if (typeof window !== 'undefined') {
+  endpoint = "https://cors-anywhere.herokuapp.com/".concat(endpoint);
+}
+
 var api = new __WEBPACK_IMPORTED_MODULE_0_wpapi___default.a({
   endpoint: endpoint
 });
