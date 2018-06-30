@@ -1,2 +1,4 @@
 .DS_Store
+.next/bundles
+.next/server
 node_modules/
