@@ -1,0 +1,362 @@
+@import 'animate';
+@import 'fonts';
+@import 'lightbox';
+@import 'menu';
+@import 'normalize';
+@import 'nprogress';
+@import 'theme';
+
+* {
+  box-sizing: border-box;
+}
+body,
+html {
+  background-color: $maastricht-blue;
+  color: $baby-powder;
+  font-family: 'roboto';
+  ::selection {
+    background: $aquamarine;
+  }
+  ::-moz-selection {
+    background: $aquamarine;
+  }
+}
+a {
+  color: $bright-yellow;
+  border-bottom: 2px solid $bright-yellow;
+  text-decoration: none;
+}
+button {
+  outline: none;
+}
+h1,
+h2,
+h3 {
+  font-family: 'gilroy';
+}
+h3 {
+  line-height: 24px;
+  margin: 0 40px;
+}
+h1 {
+  color: $turquoise;
+  padding: 0 35px;
+}
+@media (min-width:320px) {
+  h1 {
+    font-size: 30px;
+    padding: 0 20px;
+  }
+}
+@media (min-width:375px) {
+  h1 {
+    font-size: 35px;
+    padding: 0 25px;
+  }
+}
+@media (min-width:411px) {
+  h1 {
+    font-size: 38px;
+    padding: 0 30px;
+  }
+}
+@media (min-width:414px) {
+  h1 {
+    font-size: 38px;
+    padding: 0 30px;
+  }
+}
+@media (min-width:481px) {
+  h1 {
+    font-size: 40px;
+  }
+}
+@media (min-width:641px) {
+  h1 {
+    font-size: 50px;
+  }
+}
+@media (min-width:961px) {
+  h1 {
+    font-size: 60px;
+  }
+}
+@media (min-width:1025px) {
+  h1 {
+    font-size: 60px;
+  }
+}
+p {
+  line-height: 26px;
+}
+main {
+  background-image: url(/static/img/dallas-map.jpg);
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 1642px 1200px;
+  padding-top: 40px;
+  text-align: center;
+}
+footer {
+  background-color: $mine-shaft;
+  color: $turquoise;
+  padding: 40px;
+  > :first-child {
+    padding-bottom: 20px;
+  }
+}
+.logo {
+  display: none;
+  padding: 20px 0;
+  &.stacked {
+    display: inline-flex;
+    max-width: 300px;
+  }
+}
+@media (min-width:320px) {
+  .logo {
+    display: none;
+    &.stacked {
+      display: inline-flex;
+      max-width: 300px;
+    }
+  }
+}
+@media (min-width:375px) {
+  .logo {
+    display: none;
+    &.stacked {
+      display: inline-flex;
+      max-width: 340px;
+    }
+  }
+}
+@media (min-width:411px) {
+  .logo {
+    display: none;
+    &.stacked {
+      display: inline-flex;
+      max-width: 340px;
+    }
+  }
+}
+@media (min-width:481px) {
+  .logo {
+    display: none;
+    &.stacked {
+      display: inline-flex;
+      max-width: 400px;
+    }
+  }
+}
+@media (min-width:641px) {
+  .logo {
+    display: inline-flex;
+    max-width: 620px;
+    &.stacked {
+      display: none;
+    }
+  }
+}
+@media (min-width:961px) {
+  .logo {
+    display: inline-flex;
+    max-width: 940px;
+    &.stacked {
+      display: none;
+    }
+  }
+}
+@media (min-width:1025px) {
+  .logo {
+    display: inline-flex;
+    max-width: 900px;
+    &.stacked {
+      display: none;
+    }
+  }
+}
+@media (min-width:1281px) {
+  .logo {
+    display: inline-flex;
+    max-width: 1260px;
+    &.stacked {
+      display: none;
+    }
+  }
+}
+.intro {
+  font-size: 18px;
+  padding: 0 35px;
+  &.about {
+    padding-bottom: 40px;
+  }
+  span {
+    background-color: $aquamarine;
+    border-radius: 3px;
+    color: $mine-shaft;
+    padding: 2px;
+  }
+}
+.restaurant-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 40px;
+  .restaurant {
+    background: $baby-powder;
+    border: 0;
+    border-radius: 6px;
+    color: $mine-shaft;
+    margin: 40px 0 0 40px;
+    min-height: 285px;
+    padding: 20px;
+    position: relative;
+    text-align: left;
+    word-wrap: break-word;
+    &.single {
+      h1 {
+        color: $bright-yellow;
+        margin: 0 0 15px 0;
+        padding: 0;
+      }
+      .address {
+        margin: 0 0 10px 0;
+      }
+    }
+    &:after {
+      content: "";
+      flex: auto;
+    }
+    h2 {
+      margin: 0;
+    }
+    img {
+      border: 0;
+    }
+    .address {
+      margin: 10px 0;
+      a {
+        color: $tractor-red;
+        border-bottom: 2px solid $tractor-red;
+      }
+    }
+    .copy {
+      div {
+        p {
+          line-height: 19px;
+          margin: 0;
+          padding-bottom: 35px;
+        }
+      }
+    }
+    .date {
+      bottom: 20px;
+      font-size: 14px;
+      position: absolute;
+      right: 20px;
+    }
+    .icon {
+      bottom: 15px;
+      left: 15px;
+      max-height: 38px;
+      position: absolute;
+    }
+    .img-thumb {
+      border: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      z-index: 1;
+      img {
+        max-width: 100px;
+      }
+    }
+    .placeholder {
+      float: left;
+      margin-right: 14px;
+      position: relative;
+    }
+  }
+}
+@media (min-width:320px) {
+  .restaurant-list {
+    .restaurant {
+      flex: 1 1 220px;
+    }
+  }
+}
+@media (min-width:481px) {
+  .restaurant-list {
+    .restaurant {
+      flex: 1 1 260px;
+    }
+  }
+}
+@media (min-width:641px) {
+  .restaurant-list {
+    .restaurant {
+      flex: 1 1 270px;
+    }
+  }
+}
+@media (min-width:961px) {
+  .restaurant-list {
+    .restaurant {
+      flex: 1 1 380px;
+    }
+  }
+}
+@media (min-width:1025px) {
+  .restaurant-list {
+    .restaurant {
+      flex: 1 1 275px;
+    }
+  }
+}
+@media (min-width:1281px) {
+  .restaurant-list {
+    .restaurant {
+      flex: 1 1 340px;
+    }
+  }
+}
+.loading-more {
+  padding: 25px;
+  @keyframes rotating {
+    from {
+      transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes rotating {
+    from {
+      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  img {
+    -webkit-animation: rotating 1s linear infinite;
+    -moz-animation: rotating 1s linear infinite;
+    -ms-animation: rotating 1s linear infinite;
+    -o-animation: rotating 1s linear infinite;
+    animation: rotating 1s linear infinite;
+    margin: 10px 0 50px 0;
+  }
+}
+.wow {
+  visibility: hidden;
+}
