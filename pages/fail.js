@@ -111,7 +111,7 @@ class Fail extends React.PureComponent {
         <section className={'restaurant-list'}>
           {
             posts.map(post => (
-              <section key={post.id} className={'restaurant' + getWowClass(this.window)} data-wow-duration=".5s" data-wow-offset="10">
+              <section key={post.id} className={'restaurant ' + getWowClass(this.window)} data-wow-duration=".5s" data-wow-offset="10">
                 <img src={'/static/img/' + getCategoryIcon(post.section) + '.png'} className={'icon'}/>
                 <Link
                   href={{

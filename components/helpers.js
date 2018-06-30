@@ -71,9 +71,9 @@ export const buildImageaArray = (post) => {
   return images;
 };
 
-// do not apply wow class when rendering server side for SEOz
+// TODO: fix this
 export const getWowClass = (window) => {
-  var wowClass = '';
+  var wowClass = 'wow fadeInUp';
 
   if(typeof window !== 'undefined') {
     wowClass = 'wow fadeInUp';
