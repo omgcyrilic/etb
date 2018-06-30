@@ -36,8 +36,9 @@ class About extends React.PureComponent {
         <div className={'intro about'}>
           <h1>About</h1>
           <p>Hello there. Top of the website to you. </p>
-          <p>I'm Brian Parks and I love to eat burgers. I also love to make computers go beep boop beep. The third and latest version of eat this beef was built from the ground up and is utilizing the newest steamy hotness including but not limited to: the Wordpress REST API (bc super friendly CMS), react, next.js, express, SASS et al. It also renders on both the server and client side, such neat! Much SEO.</p>
-          <p>You can check out the <a href="https://github.com/omgcyrilic/etb" target="blank">source code</a> if you're feelin' saucy, or if you're a shameless nerd.</p>
+          <p>Eat this beef has been searching for the best burgers in Dallas Texas for eight years. We check out new places almost every week so drop in again as the top ten is ever-evolving. ETB is burger centric in that we're not concerned with price, atmosphere, or service. It's all about the burger. We will however comment on the aforementioned if the restaurant delivers above and beyond. We prefer a "best of the best" short list as opposed to a lengthy list of options coupled with a complicated ranking system.</p>
+          <p>Established in 2010, eat this beef has cataloged <span>219</span> burgers in the DFW area to date. Fight us.</p>
+          <p>I'm Brian Parks and I love to eat burgers. I also love to make computers go beep boop beep. This is version three of eat this beef and it's been built from the ground up. It's utilizing the newest steamy hotness including but not limited to: the Wordpress REST API, react, next.js, express, SASS et al. It also renders on both the server and client side, such neat! Much SEO. You can check out the <a href="https://github.com/omgcyrilic/etb" target="blank">source code</a> if you're feelin' saucy.</p>
           <p>And now, a message about burgers:</p>
           <p>"BURGER. The mere mention of the word elicits a Pavlovian salivation from men and women the world over. An easily uttered two syllables used to define a food both beautiful in its pure minimalist pragmatism and fascinating in its immeasurable permutations.</p>
           <p>Bun + Patty + Various Adornments + Bun = Burger.</p>

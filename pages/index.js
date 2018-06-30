@@ -92,11 +92,7 @@ class Home extends React.PureComponent {
           <img src={'/static/img/logo.png'} className={'logo'} />
           <img src={'/static/img/logo-stacked.png'} className={'logo stacked'} />
           <h1>WELCOME TO DFW'S UNDISPUTED MOST EPIC BURGER RANKING PUBLICATION OF ALL TIME</h1>
-          <div className={'intro'}>
-            <p>Hi there. Eat this beef has been searching for the best burgers in Dallas, TX for eight years and our life long quest continues to this day. We check out new places almost every week so drop in again as the top ten is ever-evolving. ETB is burger centric in that we're not concerned with price, atmosphere, or service. It's all about the burger. We will however comment on the aforementioned if the restaurant delivers above and beyond. We prefer a "best of the best" short list as opposed to a lengthy list of options coupled with a complicated ranking system. Less is more.</p>
-            <p>Established in 2010, eat this beef has cataloged <span>219</span> burgers in the DFW area to date. Fight us.</p>
-          </div>
-          <h1>BURGERS THAT JUST MET OUR BELLIES</h1>
+          <h4>BURGERS THAT JUST MET OUR BELLIES</h4>
         </section>
         {isOpen && (
           <Lightbox

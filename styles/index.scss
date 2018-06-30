@@ -32,21 +32,29 @@ button {
 }
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: 'gilroy';
-}
-h3 {
-  line-height: 24px;
-  margin: 0 40px;
 }
 h1 {
   color: $turquoise;
   padding: 0 35px;
 }
+h3 {
+  line-height: 24px;
+  margin: 0 40px;
+}
+h4 {
+  color: $bright-yellow;
+  margin-bottom: 0;
+}
 @media (min-width:320px) {
   h1 {
     font-size: 30px;
     padding: 0 20px;
+  }
+  h4 {
+    font-size: 20px;
   }
 }
 @media (min-width:375px) {
@@ -54,11 +62,18 @@ h1 {
     font-size: 35px;
     padding: 0 25px;
   }
+  h4 {
+    font-size: 25px;
+  }
 }
 @media (min-width:411px) {
   h1 {
     font-size: 38px;
     padding: 0 30px;
+  }
+  h4 {
+    font-size: 28px;
+    padding: 0 45px;
   }
 }
 @media (min-width:414px) {
@@ -66,25 +81,40 @@ h1 {
     font-size: 38px;
     padding: 0 30px;
   }
+  h4 {
+    font-size: 28px;
+  }
 }
 @media (min-width:481px) {
   h1 {
     font-size: 40px;
+  }
+  h4 {
+    font-size: 30px;
   }
 }
 @media (min-width:641px) {
   h1 {
     font-size: 50px;
   }
+  h4 {
+    font-size: 40px;
+  }
 }
 @media (min-width:961px) {
   h1 {
     font-size: 60px;
   }
+  h4 {
+    font-size: 50px;
+  }
 }
 @media (min-width:1025px) {
   h1 {
     font-size: 60px;
+  }
+  h4 {
+    font-size: 50px;
   }
 }
 p {
