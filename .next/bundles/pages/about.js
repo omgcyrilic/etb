@@ -1,7 +1,7 @@
 module.exports =
-__NEXT_REGISTER_PAGE('/', function() {
+__NEXT_REGISTER_PAGE('/about', function() {
           var comp =
-      webpackJsonp([10],{
+      webpackJsonp([9],{
 
 /***/ "./api.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -22,103 +22,6 @@ var api = new __WEBPACK_IMPORTED_MODULE_0_wpapi___default.a({
   endpoint: endpoint
 });
 /* harmony default export */ __webpack_exports__["a"] = (api);
-
-/***/ }),
-
-/***/ "./components/helpers.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return dateDisplay; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getCategoryIcon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getGoogleMapsUrl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return buildImageaArray; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getWowClass; });
-
-
-var dateDisplay = function dateDisplay(dateString) {
-  var d = new Date(dateString);
-  var month = new Array();
-  month[0] = 'January';
-  month[1] = 'February';
-  month[2] = 'March';
-  month[3] = 'April';
-  month[4] = 'May';
-  month[5] = 'June';
-  month[6] = 'July';
-  month[7] = 'August';
-  month[8] = 'September';
-  month[9] = 'October';
-  month[10] = 'November';
-  month[11] = 'December';
-  var monthText = month[d.getMonth()];
-  var year = d.getFullYear();
-  return monthText + ' ' + year;
-};
-var getCategoryIcon = function getCategoryIcon(category) {
-  var categoryId = parseInt(category[0]);
-
-  if (categoryId === 1) {
-    return 'top';
-  }
-
-  if (categoryId === 2) {
-    return 'hm';
-  }
-
-  if (categoryId === 3) {
-    return 'fail';
-  }
-
-  if (categoryId === 4) {
-    return 'placeholder';
-  } else {
-    return 'error';
-  }
-};
-var getGoogleMapsUrl = function getGoogleMapsUrl(post) {
-  var url = '';
-  url = 'https://www.google.com/maps/place/' + post.addressstreet + '+' + post.addresscity + '+' + post.addressstate;
-  return url;
-};
-var buildImageaArray = function buildImageaArray(post) {
-  var images = [];
-
-  if (typeof post !== 'undefined') {
-    if (typeof post.img !== 'undefined') {
-      images.push({
-        'src': '/static/img/' + post.img,
-        'title': post.restaurant
-      });
-    }
-
-    if (typeof post.imgbonus !== 'undefined') {
-      images.push({
-        'src': '/static/img/' + post.imgbonus,
-        'title': post.restaurant
-      });
-    }
-
-    if (typeof post.imgexterior !== 'undefined') {
-      images.push({
-        'src': '/static/img/' + post.imgexterior,
-        'title': post.restaurant
-      });
-    }
-  }
-
-  return images;
-}; // do not apply wow class when rendering server side for SEOz
-
-var getWowClass = function getWowClass(window) {
-  var wowClass = '';
-
-  if (typeof window !== 'undefined') {
-    wowClass = 'wow fadeInUp';
-  }
-
-  return wowClass;
-};
 
 /***/ }),
 
@@ -691,221 +594,6 @@ Emitter.prototype.listeners = function(event){
 Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/consolidated-events/lib/index.esm.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addEventListener; });
-var CAN_USE_DOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
-// Adapted from Modernizr
-// https://github.com/Modernizr/Modernizr/blob/acb3f0d9/feature-detects/dom/passiveeventlisteners.js#L26-L37
-function testPassiveEventListeners() {
-  if (!CAN_USE_DOM) {
-    return false;
-  }
-
-  if (!window.addEventListener || !window.removeEventListener || !Object.defineProperty) {
-    return false;
-  }
-
-  var supportsPassiveOption = false;
-  try {
-    var opts = Object.defineProperty({}, 'passive', {
-      // eslint-disable-next-line getter-return
-      get: function () {
-        function get() {
-          supportsPassiveOption = true;
-        }
-
-        return get;
-      }()
-    });
-    var noop = function noop() {};
-    window.addEventListener('testPassiveEventSupport', noop, opts);
-    window.removeEventListener('testPassiveEventSupport', noop, opts);
-  } catch (e) {
-    // do nothing
-  }
-
-  return supportsPassiveOption;
-}
-
-var memoized = void 0;
-
-function canUsePassiveEventListeners() {
-  if (memoized === undefined) {
-    memoized = testPassiveEventListeners();
-  }
-  return memoized;
-}
-
-function normalizeEventOptions(eventOptions) {
-  if (!eventOptions) {
-    return undefined;
-  }
-
-  if (!canUsePassiveEventListeners()) {
-    // If the browser does not support the passive option, then it is expecting
-    // a boolean for the options argument to specify whether it should use
-    // capture or not. In more modern browsers, this is passed via the `capture`
-    // option, so let's just hoist that value up.
-    return !!eventOptions.capture;
-  }
-
-  return eventOptions;
-}
-
-/* eslint-disable no-bitwise */
-
-/**
- * Generate a unique key for any set of event options
- */
-function eventOptionsKey(normalizedEventOptions) {
-  if (!normalizedEventOptions) {
-    return 0;
-  }
-
-  // If the browser does not support passive event listeners, the normalized
-  // event options will be a boolean.
-  if (normalizedEventOptions === true) {
-    return 100;
-  }
-
-  // At this point, the browser supports passive event listeners, so we expect
-  // the event options to be an object with possible properties of capture,
-  // passive, and once.
-  //
-  // We want to consistently return the same value, regardless of the order of
-  // these properties, so let's use binary maths to assign each property to a
-  // bit, and then add those together (with an offset to account for the
-  // booleans at the beginning of this function).
-  var capture = normalizedEventOptions.capture << 0;
-  var passive = normalizedEventOptions.passive << 1;
-  var once = normalizedEventOptions.once << 2;
-  return capture + passive + once;
-}
-
-function ensureCanMutateNextEventHandlers(eventHandlers) {
-  if (eventHandlers.handlers === eventHandlers.nextHandlers) {
-    // eslint-disable-next-line no-param-reassign
-    eventHandlers.nextHandlers = eventHandlers.handlers.slice();
-  }
-}
-
-function TargetEventHandlers(target) {
-  this.target = target;
-  this.events = {};
-}
-
-TargetEventHandlers.prototype.getEventHandlers = function () {
-  function getEventHandlers(eventName, options) {
-    var key = String(eventName) + ' ' + String(eventOptionsKey(options));
-
-    if (!this.events[key]) {
-      this.events[key] = {
-        handlers: [],
-        handleEvent: undefined
-      };
-      this.events[key].nextHandlers = this.events[key].handlers;
-    }
-
-    return this.events[key];
-  }
-
-  return getEventHandlers;
-}();
-
-TargetEventHandlers.prototype.handleEvent = function () {
-  function handleEvent(eventName, options, event) {
-    var eventHandlers = this.getEventHandlers(eventName, options);
-    eventHandlers.handlers = eventHandlers.nextHandlers;
-    eventHandlers.handlers.forEach(function (handler) {
-      if (handler) {
-        // We need to check for presence here because a handler function may
-        // cause later handlers to get removed. This can happen if you for
-        // instance have a waypoint that unmounts another waypoint as part of an
-        // onEnter/onLeave handler.
-        handler(event);
-      }
-    });
-  }
-
-  return handleEvent;
-}();
-
-TargetEventHandlers.prototype.add = function () {
-  function add(eventName, listener, options) {
-    var _this = this;
-
-    // options has already been normalized at this point.
-    var eventHandlers = this.getEventHandlers(eventName, options);
-
-    ensureCanMutateNextEventHandlers(eventHandlers);
-
-    if (eventHandlers.nextHandlers.length === 0) {
-      eventHandlers.handleEvent = this.handleEvent.bind(this, eventName, options);
-
-      this.target.addEventListener(eventName, eventHandlers.handleEvent, options);
-    }
-
-    eventHandlers.nextHandlers.push(listener);
-
-    var isSubscribed = true;
-    var unsubscribe = function () {
-      function unsubscribe() {
-        if (!isSubscribed) {
-          return;
-        }
-
-        isSubscribed = false;
-
-        ensureCanMutateNextEventHandlers(eventHandlers);
-        var index = eventHandlers.nextHandlers.indexOf(listener);
-        eventHandlers.nextHandlers.splice(index, 1);
-
-        if (eventHandlers.nextHandlers.length === 0) {
-          // All event handlers have been removed, so we want to remove the event
-          // listener from the target node.
-
-          if (_this.target) {
-            // There can be a race condition where the target may no longer exist
-            // when this function is called, e.g. when a React component is
-            // unmounting. Guarding against this prevents the following error:
-            //
-            //   Cannot read property 'removeEventListener' of undefined
-            _this.target.removeEventListener(eventName, eventHandlers.handleEvent, options);
-          }
-
-          eventHandlers.handleEvent = undefined;
-        }
-      }
-
-      return unsubscribe;
-    }();
-    return unsubscribe;
-  }
-
-  return add;
-}();
-
-var EVENT_HANDLERS_KEY = '__consolidated_events_handlers__';
-
-// eslint-disable-next-line import/prefer-default-export
-function addEventListener(target, eventName, listener, options) {
-  if (!target[EVENT_HANDLERS_KEY]) {
-    // eslint-disable-next-line no-param-reassign
-    target[EVENT_HANDLERS_KEY] = new TargetEventHandlers(target);
-  }
-  var normalizedEventOptions = normalizeEventOptions(options);
-  return target[EVENT_HANDLERS_KEY].add(eventName, listener, normalizedEventOptions);
-}
-
-
 
 
 /***/ }),
@@ -14528,375 +14216,6 @@ module.exports = uniq;
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/lib/dynamic.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__("./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = dynamicComponent;
-exports.registerChunk = registerChunk;
-exports.flushChunks = flushChunks;
-exports.SameLoopPromise = void 0;
-
-var _from = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/array/from.js"));
-
-var _keys = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/object/keys.js"));
-
-var _getPrototypeOf = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/object/get-prototype-of.js"));
-
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/classCallCheck.js"));
-
-var _createClass2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/createClass.js"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/helpers/inherits.js"));
-
-var _set = _interopRequireDefault(__webpack_require__("./node_modules/@babel/runtime/core-js/set.js"));
-
-var _react = _interopRequireDefault(__webpack_require__("./node_modules/react/index.js"));
-
-var _utils = __webpack_require__("./node_modules/next/dist/lib/utils.js");
-
-var currentChunks = new _set.default();
-
-function dynamicComponent(p, o) {
-  var promise;
-  var options;
-
-  if (p instanceof SameLoopPromise) {
-    promise = p;
-    options = o || {};
-  } else {
-    // Now we are trying to use the modules and render fields in options to load modules.
-    if (!p.modules || !p.render) {
-      var errorMessage = '`next/dynamic` options should contain `modules` and `render` fields';
-      throw new Error(errorMessage);
-    }
-
-    if (o) {
-      var _errorMessage = 'Add additional `next/dynamic` options to the first argument containing the `modules` and `render` fields';
-      throw new Error(_errorMessage);
-    }
-
-    options = p;
-  }
-
-  return (
-    /*#__PURE__*/
-    function (_React$Component) {
-      (0, _inherits2.default)(DynamicComponent, _React$Component);
-
-      function DynamicComponent() {
-        var _ref;
-
-        var _this;
-
-        (0, _classCallCheck2.default)(this, DynamicComponent);
-
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-
-        _this = (0, _possibleConstructorReturn2.default)(this, (_ref = DynamicComponent.__proto__ || (0, _getPrototypeOf.default)(DynamicComponent)).call.apply(_ref, [this].concat(args)));
-        _this.LoadingComponent = options.loading ? options.loading : function () {
-          return _react.default.createElement("p", null, "loading...");
-        };
-        _this.ssr = options.ssr === false ? options.ssr : true;
-        _this.state = {
-          AsyncComponent: null,
-          asyncElement: null
-        };
-        _this.isServer = typeof window === 'undefined'; // This flag is used to load the bundle again, if needed
-
-        _this.loadBundleAgain = null; // This flag keeps track of the whether we are loading a bundle or not.
-
-        _this.loadingBundle = false;
-
-        if (_this.ssr) {
-          _this.load();
-        }
-
-        return _this;
-      }
-
-      (0, _createClass2.default)(DynamicComponent, [{
-        key: "load",
-        value: function load() {
-          if (promise) {
-            this.loadComponent();
-          } else {
-            this.loadBundle(this.props);
-          }
-        }
-      }, {
-        key: "loadComponent",
-        value: function loadComponent() {
-          var _this2 = this;
-
-          promise.then(function (m) {
-            var AsyncComponent = m.default || m; // Set a readable displayName for the wrapper component
-
-            var asyncCompName = (0, _utils.getDisplayName)(AsyncComponent);
-
-            if (asyncCompName) {
-              DynamicComponent.displayName = "DynamicComponent for ".concat(asyncCompName);
-            }
-
-            if (_this2.mounted) {
-              _this2.setState({
-                AsyncComponent: AsyncComponent
-              });
-            } else {
-              if (_this2.isServer) {
-                registerChunk(m.__webpackChunkName);
-              }
-
-              _this2.state.AsyncComponent = AsyncComponent;
-            }
-          });
-        }
-      }, {
-        key: "loadBundle",
-        value: function loadBundle(props) {
-          var _this3 = this;
-
-          this.loadBundleAgain = null;
-          this.loadingBundle = true; // Run this for prop changes as well.
-
-          var modulePromiseMap = options.modules(props);
-          var moduleNames = (0, _keys.default)(modulePromiseMap);
-          var remainingPromises = moduleNames.length;
-          var moduleMap = {};
-
-          var renderModules = function renderModules() {
-            if (_this3.loadBundleAgain) {
-              _this3.loadBundle(_this3.loadBundleAgain);
-
-              return;
-            }
-
-            _this3.loadingBundle = false;
-            DynamicComponent.displayName = 'DynamicBundle';
-            var asyncElement = options.render(props, moduleMap);
-
-            if (_this3.mounted) {
-              _this3.setState({
-                asyncElement: asyncElement
-              });
-            } else {
-              _this3.state.asyncElement = asyncElement;
-            }
-          };
-
-          var loadModule = function loadModule(name) {
-            var promise = modulePromiseMap[name];
-            promise.then(function (m) {
-              var Component = m.default || m;
-
-              if (_this3.isServer) {
-                registerChunk(m.__webpackChunkName);
-              }
-
-              moduleMap[name] = Component;
-              remainingPromises--;
-
-              if (remainingPromises === 0) {
-                renderModules();
-              }
-            });
-          };
-
-          moduleNames.forEach(loadModule);
-        }
-      }, {
-        key: "componentDidMount",
-        value: function componentDidMount() {
-          this.mounted = true;
-
-          if (!this.ssr) {
-            this.load();
-          }
-        }
-      }, {
-        key: "componentWillReceiveProps",
-        value: function componentWillReceiveProps(nextProps) {
-          if (promise) return;
-          this.setState({
-            asyncElement: null
-          });
-
-          if (this.loadingBundle) {
-            this.loadBundleAgain = nextProps;
-            return;
-          }
-
-          this.loadBundle(nextProps);
-        }
-      }, {
-        key: "componentWillUnmount",
-        value: function componentWillUnmount() {
-          this.mounted = false;
-        }
-      }, {
-        key: "render",
-        value: function render() {
-          var _state = this.state,
-              AsyncComponent = _state.AsyncComponent,
-              asyncElement = _state.asyncElement;
-          var LoadingComponent = this.LoadingComponent;
-          if (asyncElement) return asyncElement;
-          if (AsyncComponent) return _react.default.createElement(AsyncComponent, this.props);
-          return _react.default.createElement(LoadingComponent, this.props);
-        }
-      }]);
-      return DynamicComponent;
-    }(_react.default.Component)
-  );
-}
-
-function registerChunk(chunk) {
-  currentChunks.add(chunk);
-}
-
-function flushChunks() {
-  var chunks = (0, _from.default)(currentChunks);
-  currentChunks.clear();
-  return chunks;
-}
-
-var SameLoopPromise =
-/*#__PURE__*/
-function () {
-  (0, _createClass2.default)(SameLoopPromise, null, [{
-    key: "resolve",
-    value: function resolve(value) {
-      var promise = new SameLoopPromise(function (done) {
-        return done(value);
-      });
-      return promise;
-    }
-  }]);
-
-  function SameLoopPromise(cb) {
-    (0, _classCallCheck2.default)(this, SameLoopPromise);
-    this.onResultCallbacks = [];
-    this.onErrorCallbacks = [];
-    this.cb = cb;
-  }
-
-  (0, _createClass2.default)(SameLoopPromise, [{
-    key: "setResult",
-    value: function setResult(result) {
-      this.gotResult = true;
-      this.result = result;
-      this.onResultCallbacks.forEach(function (cb) {
-        return cb(result);
-      });
-      this.onResultCallbacks = [];
-    }
-  }, {
-    key: "setError",
-    value: function setError(error) {
-      this.gotError = true;
-      this.error = error;
-      this.onErrorCallbacks.forEach(function (cb) {
-        return cb(error);
-      });
-      this.onErrorCallbacks = [];
-    }
-  }, {
-    key: "then",
-    value: function then(onResult, onError) {
-      var _this4 = this;
-
-      this.runIfNeeded();
-      var promise = new SameLoopPromise();
-
-      var handleError = function handleError() {
-        if (onError) {
-          promise.setResult(onError(_this4.error));
-        } else {
-          promise.setError(_this4.error);
-        }
-      };
-
-      var handleResult = function handleResult() {
-        promise.setResult(onResult(_this4.result));
-      };
-
-      if (this.gotResult) {
-        handleResult();
-        return promise;
-      }
-
-      if (this.gotError) {
-        handleError();
-        return promise;
-      }
-
-      this.onResultCallbacks.push(handleResult);
-      this.onErrorCallbacks.push(handleError);
-      return promise;
-    }
-  }, {
-    key: "catch",
-    value: function _catch(onError) {
-      var _this5 = this;
-
-      this.runIfNeeded();
-      var promise = new SameLoopPromise();
-
-      var handleError = function handleError() {
-        promise.setResult(onError(_this5.error));
-      };
-
-      var handleResult = function handleResult() {
-        promise.setResult(_this5.result);
-      };
-
-      if (this.gotResult) {
-        handleResult();
-        return promise;
-      }
-
-      if (this.gotError) {
-        handleError();
-        return promise;
-      }
-
-      this.onErrorCallbacks.push(handleError);
-      this.onResultCallbacks.push(handleResult);
-      return promise;
-    }
-  }, {
-    key: "runIfNeeded",
-    value: function runIfNeeded() {
-      var _this6 = this;
-
-      if (!this.cb) return;
-      if (this.ran) return;
-      this.ran = true;
-      this.cb(function (result) {
-        return _this6.setResult(result);
-      }, function (error) {
-        return _this6.setError(error);
-      });
-    }
-  }]);
-  return SameLoopPromise;
-}();
-
-exports.SameLoopPromise = SameLoopPromise;
-
-/***/ }),
-
 /***/ "./node_modules/next/dist/lib/link.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15126,14 +14445,6 @@ function isLocal(href) {
 }
 
 var warnLink = (0, _utils.execOnce)(_utils.warn);
-
-/***/ }),
-
-/***/ "./node_modules/next/dynamic.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/next/dist/lib/dynamic.js")
-
 
 /***/ }),
 
@@ -17484,635 +16795,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_12__;
 /***/ })
 /******/ ]);
 });
-
-/***/ }),
-
-/***/ "./node_modules/react-waypoint/es/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_consolidated_events__ = __webpack_require__("./node_modules/consolidated-events/lib/index.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-
-
-
-
-/**
- * Attempts to parse the offset provided as a prop as a percentage. For
- * instance, if the component has been provided with the string "20%" as
- * a value of one of the offset props. If the value matches, then it returns
- * a numeric version of the prop. For instance, "20%" would become `0.2`.
- * If `str` isn't a percentage, then `undefined` will be returned.
- *
- * @param {string} str The value of an offset prop to be converted to a
- *   number.
- * @return {number|undefined} The numeric version of `str`. Undefined if `str`
- *   was not a percentage.
- */
-function parseOffsetAsPercentage(str) {
-  if (str.slice(-1) === '%') {
-    return parseFloat(str.slice(0, -1)) / 100;
-  }
-}
-
-/**
- * Attempts to parse the offset provided as a prop as a pixel value. If
- * parsing fails, then `undefined` is returned. Three examples of values that
- * will be successfully parsed are:
- * `20`
- * "20px"
- * "20"
- *
- * @param {string|number} str A string of the form "{number}" or "{number}px",
- *   or just a number.
- * @return {number|undefined} The numeric version of `str`. Undefined if `str`
- *   was neither a number nor string ending in "px".
- */
-function parseOffsetAsPixels(str) {
-  if (!isNaN(parseFloat(str)) && isFinite(str)) {
-    return parseFloat(str);
-  } else if (str.slice(-2) === 'px') {
-    return parseFloat(str.slice(0, -2));
-  }
-}
-
-/**
- * @param {string|number} offset
- * @param {number} contextHeight
- * @return {number} A number representing `offset` converted into pixels.
- */
-function computeOffsetPixels(offset, contextHeight) {
-  var pixelOffset = parseOffsetAsPixels(offset);
-
-  if (typeof pixelOffset === 'number') {
-    return pixelOffset;
-  }
-
-  var percentOffset = parseOffsetAsPercentage(offset);
-  if (typeof percentOffset === 'number') {
-    return percentOffset * contextHeight;
-  }
-}
-
-var constants = {
-  above: 'above',
-  inside: 'inside',
-  below: 'below',
-  invisible: 'invisible'
-};
-
-function debugLog() {
-  if (true) {
-    console.log(arguments); // eslint-disable-line no-console
-  }
-}
-
-var errorMessage = '<Waypoint> expected to receive a single React element child.\n\n' + 'See https://goo.gl/LrBNgw for more info.';
-
-/**
- * Raise an error if more that one child was provided to "children"
- *
- * @param {?React.element} children
- * @return {undefined}
- */
-function ensureChildrenIsValid(children) {
-  if (children) {
-    try {
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.only(children);
-    } catch (e) {
-      throw new Error(errorMessage);
-    }
-  }
-}
-
-/**
- * When an element's type is a string, it represents a DOM node with that tag name
- * https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html#dom-elements
- *
- * @param {React.element} Component
- * @return {bool} Whether the component is a DOM Element
- */
-function isDOMElement(Component) {
-  return typeof Component.type === 'string';
-}
-
-var errorMessage$1 = '<Waypoint> needs a DOM element to compute boundaries. The child you passed is neither a ' + 'DOM element (e.g. <div>) nor does it use the innerRef prop.\n\n' + 'See https://goo.gl/LrBNgw for more info.';
-
-/**
- * Raise an error if "children" is not a DOM Element and there is no ref provided to Waypoint
- *
- * @param {?React.element} children
- * @param {?HTMLElement} ref
- * @return {undefined}
- */
-function ensureRefIsProvidedByChild(children, ref) {
-  if (children && !isDOMElement(children) && !ref) {
-    throw new Error(errorMessage$1);
-  }
-}
-
-/**
- * @param {object} bounds An object with bounds data for the waypoint and
- *   scrollable parent
- * @return {string} The current position of the waypoint in relation to the
- *   visible portion of the scrollable parent. One of `constants.above`,
- *   `constants.below`, or `constants.inside`.
- */
-function getCurrentPosition(bounds) {
-  if (bounds.viewportBottom - bounds.viewportTop === 0) {
-    return constants.invisible;
-  }
-
-  // top is within the viewport
-  if (bounds.viewportTop <= bounds.waypointTop && bounds.waypointTop <= bounds.viewportBottom) {
-    return constants.inside;
-  }
-
-  // bottom is within the viewport
-  if (bounds.viewportTop <= bounds.waypointBottom && bounds.waypointBottom <= bounds.viewportBottom) {
-    return constants.inside;
-  }
-
-  // top is above the viewport and bottom is below the viewport
-  if (bounds.waypointTop <= bounds.viewportTop && bounds.viewportBottom <= bounds.waypointBottom) {
-    return constants.inside;
-  }
-
-  if (bounds.viewportBottom < bounds.waypointTop) {
-    return constants.below;
-  }
-
-  if (bounds.waypointTop < bounds.viewportTop) {
-    return constants.above;
-  }
-
-  return constants.invisible;
-}
-
-var timeout = void 0;
-var timeoutQueue = [];
-
-function onNextTick(cb) {
-  timeoutQueue.push(cb);
-
-  if (!timeout) {
-    timeout = setTimeout(function () {
-      timeout = null;
-
-      // Drain the timeoutQueue
-      var item = void 0;
-      // eslint-disable-next-line no-cond-assign
-      while (item = timeoutQueue.shift()) {
-        item();
-      }
-    }, 0);
-  }
-
-  var isSubscribed = true;
-
-  return function () {
-    function unsubscribe() {
-      if (!isSubscribed) {
-        return;
-      }
-
-      isSubscribed = false;
-
-      var index = timeoutQueue.indexOf(cb);
-      if (index === -1) {
-        return;
-      }
-
-      timeoutQueue.splice(index, 1);
-
-      if (!timeoutQueue.length && timeout) {
-        clearTimeout(timeout);
-        timeout = null;
-      }
-    }
-
-    return unsubscribe;
-  }();
-}
-
-function resolveScrollableAncestorProp(scrollableAncestor) {
-  // When Waypoint is rendered on the server, `window` is not available.
-  // To make Waypoint easier to work with, we allow this to be specified in
-  // string form and safely convert to `window` here.
-  if (scrollableAncestor === 'window') {
-    return global.window;
-  }
-
-  return scrollableAncestor;
-}
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var defaultProps = {
-  topOffset: '0px',
-  bottomOffset: '0px',
-  horizontal: false,
-  onEnter: function () {
-    function onEnter() {}
-
-    return onEnter;
-  }(),
-  onLeave: function () {
-    function onLeave() {}
-
-    return onLeave;
-  }(),
-  onPositionChange: function () {
-    function onPositionChange() {}
-
-    return onPositionChange;
-  }(),
-
-  fireOnRapidScroll: true
-};
-
-/**
- * Calls a function when you scroll to the element.
- */
-
-var Waypoint = function (_React$Component) {
-  _inherits(Waypoint, _React$Component);
-
-  function Waypoint(props) {
-    _classCallCheck(this, Waypoint);
-
-    var _this = _possibleConstructorReturn(this, (Waypoint.__proto__ || Object.getPrototypeOf(Waypoint)).call(this, props));
-
-    _this.refElement = function (e) {
-      return _this._ref = e;
-    };
-    return _this;
-  }
-
-  _createClass(Waypoint, [{
-    key: 'componentWillMount',
-    value: function () {
-      function componentWillMount() {
-        ensureChildrenIsValid(this.props.children);
-      }
-
-      return componentWillMount;
-    }()
-  }, {
-    key: 'componentDidMount',
-    value: function () {
-      function componentDidMount() {
-        var _this2 = this;
-
-        if (!Waypoint.getWindow()) {
-          return;
-        }
-
-        // this._ref may occasionally not be set at this time. To help ensure that
-        // this works smoothly, we want to delay the initial execution until the
-        // next tick.
-        this.cancelInitialTimeout = onNextTick(function () {
-          // Berofe doing anything, we want to check that this._ref is avaliable in Waypoint
-          ensureRefIsProvidedByChild(_this2.props.children, _this2._ref);
-
-          _this2._handleScroll = _this2._handleScroll.bind(_this2);
-          _this2.scrollableAncestor = _this2._findScrollableAncestor();
-
-          if ("development" !== 'production' && _this2.props.debug) {
-            debugLog('scrollableAncestor', _this2.scrollableAncestor);
-          }
-
-          _this2.scrollEventListenerUnsubscribe = Object(__WEBPACK_IMPORTED_MODULE_1_consolidated_events__["a" /* addEventListener */])(_this2.scrollableAncestor, 'scroll', _this2._handleScroll, { passive: true });
-
-          _this2.resizeEventListenerUnsubscribe = Object(__WEBPACK_IMPORTED_MODULE_1_consolidated_events__["a" /* addEventListener */])(window, 'resize', _this2._handleScroll, { passive: true });
-
-          _this2._handleScroll(null);
-        });
-      }
-
-      return componentDidMount;
-    }()
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function () {
-      function componentWillReceiveProps(newProps) {
-        ensureChildrenIsValid(newProps.children);
-      }
-
-      return componentWillReceiveProps;
-    }()
-  }, {
-    key: 'componentDidUpdate',
-    value: function () {
-      function componentDidUpdate() {
-        if (!Waypoint.getWindow()) {
-          return;
-        }
-
-        if (!this.scrollableAncestor) {
-          // The Waypoint has not yet initialized.
-          return;
-        }
-
-        // The element may have moved.
-        this._handleScroll(null);
-      }
-
-      return componentDidUpdate;
-    }()
-  }, {
-    key: 'componentWillUnmount',
-    value: function () {
-      function componentWillUnmount() {
-        if (!Waypoint.getWindow()) {
-          return;
-        }
-
-        if (this.scrollEventListenerUnsubscribe) {
-          this.scrollEventListenerUnsubscribe();
-        }
-        if (this.resizeEventListenerUnsubscribe) {
-          this.resizeEventListenerUnsubscribe();
-        }
-
-        if (this.cancelInitialTimeout) {
-          this.cancelInitialTimeout();
-        }
-      }
-
-      return componentWillUnmount;
-    }()
-
-    /**
-     * Traverses up the DOM to find an ancestor container which has an overflow
-     * style that allows for scrolling.
-     *
-     * @return {Object} the closest ancestor element with an overflow style that
-     *   allows for scrolling. If none is found, the `window` object is returned
-     *   as a fallback.
-     */
-
-  }, {
-    key: '_findScrollableAncestor',
-    value: function () {
-      function _findScrollableAncestor() {
-        var _props = this.props,
-            horizontal = _props.horizontal,
-            scrollableAncestor = _props.scrollableAncestor;
-
-
-        if (scrollableAncestor) {
-          return resolveScrollableAncestorProp(scrollableAncestor);
-        }
-
-        var node = this._ref;
-
-        while (node.parentNode) {
-          node = node.parentNode;
-
-          if (node === document.body) {
-            // We've reached all the way to the root node.
-            return window;
-          }
-
-          var style = window.getComputedStyle(node);
-          var overflowDirec = horizontal ? style.getPropertyValue('overflow-x') : style.getPropertyValue('overflow-y');
-          var overflow = overflowDirec || style.getPropertyValue('overflow');
-
-          if (overflow === 'auto' || overflow === 'scroll') {
-            return node;
-          }
-        }
-
-        // A scrollable ancestor element was not found, which means that we need to
-        // do stuff on window.
-        return window;
-      }
-
-      return _findScrollableAncestor;
-    }()
-
-    /**
-     * @param {Object} event the native scroll event coming from the scrollable
-     *   ancestor, or resize event coming from the window. Will be undefined if
-     *   called by a React lifecyle method
-     */
-
-  }, {
-    key: '_handleScroll',
-    value: function () {
-      function _handleScroll(event) {
-        if (!this._ref) {
-          // There's a chance we end up here after the component has been unmounted.
-          return;
-        }
-
-        var bounds = this._getBounds();
-        var currentPosition = getCurrentPosition(bounds);
-        var previousPosition = this._previousPosition;
-
-        if ("development" !== 'production' && this.props.debug) {
-          debugLog('currentPosition', currentPosition);
-          debugLog('previousPosition', previousPosition);
-        }
-
-        // Save previous position as early as possible to prevent cycles
-        this._previousPosition = currentPosition;
-
-        if (previousPosition === currentPosition) {
-          // No change since last trigger
-          return;
-        }
-
-        var callbackArg = {
-          currentPosition: currentPosition,
-          previousPosition: previousPosition,
-          event: event,
-          waypointTop: bounds.waypointTop,
-          waypointBottom: bounds.waypointBottom,
-          viewportTop: bounds.viewportTop,
-          viewportBottom: bounds.viewportBottom
-        };
-        this.props.onPositionChange.call(this, callbackArg);
-
-        if (currentPosition === constants.inside) {
-          this.props.onEnter.call(this, callbackArg);
-        } else if (previousPosition === constants.inside) {
-          this.props.onLeave.call(this, callbackArg);
-        }
-
-        var isRapidScrollDown = previousPosition === constants.below && currentPosition === constants.above;
-        var isRapidScrollUp = previousPosition === constants.above && currentPosition === constants.below;
-
-        if (this.props.fireOnRapidScroll && (isRapidScrollDown || isRapidScrollUp)) {
-          // If the scroll event isn't fired often enough to occur while the
-          // waypoint was visible, we trigger both callbacks anyway.
-          this.props.onEnter.call(this, {
-            currentPosition: constants.inside,
-            previousPosition: previousPosition,
-            event: event,
-            waypointTop: bounds.waypointTop,
-            waypointBottom: bounds.waypointBottom,
-            viewportTop: bounds.viewportTop,
-            viewportBottom: bounds.viewportBottom
-          });
-          this.props.onLeave.call(this, {
-            currentPosition: currentPosition,
-            previousPosition: constants.inside,
-            event: event,
-            waypointTop: bounds.waypointTop,
-            waypointBottom: bounds.waypointBottom,
-            viewportTop: bounds.viewportTop,
-            viewportBottom: bounds.viewportBottom
-          });
-        }
-      }
-
-      return _handleScroll;
-    }()
-  }, {
-    key: '_getBounds',
-    value: function () {
-      function _getBounds() {
-        var horizontal = this.props.horizontal;
-
-        var _ref$getBoundingClien = this._ref.getBoundingClientRect(),
-            left = _ref$getBoundingClien.left,
-            top = _ref$getBoundingClien.top,
-            right = _ref$getBoundingClien.right,
-            bottom = _ref$getBoundingClien.bottom;
-
-        var waypointTop = horizontal ? left : top;
-        var waypointBottom = horizontal ? right : bottom;
-
-        var contextHeight = void 0;
-        var contextScrollTop = void 0;
-        if (this.scrollableAncestor === window) {
-          contextHeight = horizontal ? window.innerWidth : window.innerHeight;
-          contextScrollTop = 0;
-        } else {
-          contextHeight = horizontal ? this.scrollableAncestor.offsetWidth : this.scrollableAncestor.offsetHeight;
-          contextScrollTop = horizontal ? this.scrollableAncestor.getBoundingClientRect().left : this.scrollableAncestor.getBoundingClientRect().top;
-        }
-
-        if ("development" !== 'production' && this.props.debug) {
-          debugLog('waypoint top', waypointTop);
-          debugLog('waypoint bottom', waypointBottom);
-          debugLog('scrollableAncestor height', contextHeight);
-          debugLog('scrollableAncestor scrollTop', contextScrollTop);
-        }
-
-        var _props2 = this.props,
-            bottomOffset = _props2.bottomOffset,
-            topOffset = _props2.topOffset;
-
-        var topOffsetPx = computeOffsetPixels(topOffset, contextHeight);
-        var bottomOffsetPx = computeOffsetPixels(bottomOffset, contextHeight);
-        var contextBottom = contextScrollTop + contextHeight;
-
-        return {
-          waypointTop: waypointTop,
-          waypointBottom: waypointBottom,
-          viewportTop: contextScrollTop + topOffsetPx,
-          viewportBottom: contextBottom - bottomOffsetPx
-        };
-      }
-
-      return _getBounds;
-    }()
-
-    /**
-     * @return {Object}
-     */
-
-  }, {
-    key: 'render',
-    value: function () {
-      function render() {
-        var _this3 = this;
-
-        var children = this.props.children;
-
-
-        if (!children) {
-          // We need an element that we can locate in the DOM to determine where it is
-          // rendered relative to the top of its context.
-          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { ref: this.refElement, style: { fontSize: 0 } });
-        }
-
-        if (isDOMElement(children)) {
-          var ref = function () {
-            function ref(node) {
-              _this3.refElement(node);
-              if (children.ref) {
-                children.ref(node);
-              }
-            }
-
-            return ref;
-          }();
-
-          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(children, { ref: ref });
-        }
-
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(children, { innerRef: this.refElement });
-      }
-
-      return render;
-    }()
-  }]);
-
-  return Waypoint;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
-
-
- true ? Waypoint.propTypes = {
-  children: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.node,
-  debug: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
-  onEnter: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func,
-  onLeave: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func,
-  onPositionChange: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func,
-  fireOnRapidScroll: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
-  scrollableAncestor: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.any,
-  horizontal: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
-
-  // `topOffset` can either be a number, in which case its a distance from the
-  // top of the container in pixels, or a string value. Valid string values are
-  // of the form "20px", which is parsed as pixels, or "20%", which is parsed
-  // as a percentage of the height of the containing element.
-  // For instance, if you pass "-20%", and the containing element is 100px tall,
-  // then the waypoint will be triggered when it has been scrolled 20px beyond
-  // the top of the containing element.
-  topOffset: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.oneOfType([__WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.number]),
-
-  // `bottomOffset` is like `topOffset`, but for the bottom of the container.
-  bottomOffset: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.oneOfType([__WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string, __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.number])
-} : void 0;
-
-Waypoint.above = constants.above;
-Waypoint.below = constants.below;
-Waypoint.inside = constants.inside;
-Waypoint.invisible = constants.invisible;
-Waypoint.getWindow = function () {
-  if (typeof window !== 'undefined') {
-    return window;
-  }
-};
-Waypoint.defaultProps = defaultProps;
-Waypoint.displayName = 'Waypoint';
-
-/* harmony default export */ __webpack_exports__["a"] = (Waypoint);
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -25198,7 +23880,7 @@ function extend() {
 
 /***/ }),
 
-/***/ "./pages/index.js":
+/***/ "./pages/about.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25207,20 +23889,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("./node_modules/react/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_waypoint__ = __webpack_require__("./node_modules/react-waypoint/es/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_dynamic__ = __webpack_require__("./node_modules/next/dynamic.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_dynamic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_next_dynamic__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_next_head__ = __webpack_require__("./node_modules/next/head.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_next_head___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_next_head__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_next_link__ = __webpack_require__("./node_modules/next/link.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_next_link__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api__ = __webpack_require__("./api.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_withLayout__ = __webpack_require__("./components/withLayout.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_helpers__ = __webpack_require__("./components/helpers.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_head__ = __webpack_require__("./node_modules/next/head.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_head___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_next_head__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api__ = __webpack_require__("./api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_withLayout__ = __webpack_require__("./components/withLayout.js");
 
 
 
-var _jsxFileName = "/Users/brian.parks/Documents/etb/pages/index.js";
+var _jsxFileName = "/Users/brian.parks/Documents/etb/pages/about.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -25234,160 +23910,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
 
 
 
-
-
-var Lightbox = __WEBPACK_IMPORTED_MODULE_3_next_dynamic___default()( false ? new (require('next/dynamic').SameLoopPromise)(function (resolve, reject) {
-  eval('require.ensure = function (deps, callback) { callback(require) }');
-
-  require.ensure([], function (require) {
-    var m = require('react-image-lightbox');
-
-    m.__webpackChunkName = 'react_image_lightbox_65979c8056b2b266b92ff6a8853dd6eb.js';
-    resolve(m);
-  }, 'chunks/react_image_lightbox_65979c8056b2b266b92ff6a8853dd6eb.js');
-}) : new (__webpack_require__("./node_modules/next/dynamic.js").SameLoopPromise)(function (resolve, reject) {
-  var weakId = /*require.resolve*/("./node_modules/react-image-lightbox/dist/main.js");
-
-  try {
-    var weakModule = __webpack_require__(weakId);
-
-    return resolve(weakModule);
-  } catch (err) {}
-
-  __webpack_require__.e/* require.ensure */(4).then((function (require) {
-    try {
-      var m = __webpack_require__("./node_modules/react-image-lightbox/dist/main.js");
-
-      m.__webpackChunkName = 'react_image_lightbox_65979c8056b2b266b92ff6a8853dd6eb';
-      resolve(m);
-    } catch (error) {
-      reject(error);
-    }
-  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
-}));
-
-var Home =
+var About =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  _inherits(Home, _React$PureComponent);
+  _inherits(About, _React$PureComponent);
 
-  function Home() {
-    var _ref;
+  function About() {
+    _classCallCheck(this, About);
 
-    var _temp, _this;
-
-    _classCallCheck(this, Home);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "state", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: {
-        page: 1,
-        loading: false,
-        hasMore: true,
-        photoIndex: 0,
-        isOpen: false
-      }
-    }), Object.defineProperty(_assertThisInitialized(_this), "loadMore", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function () {
-        var _value = _asyncToGenerator(
-        /*#__PURE__*/
-        __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.mark(function _callee() {
-          var posts;
-          return __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  if (!(_this.state.loading || !_this.state.hasMore)) {
-                    _context.next = 2;
-                    break;
-                  }
-
-                  return _context.abrupt("return");
-
-                case 2:
-                  _this.setState({
-                    loading: true
-                  });
-
-                  _context.next = 5;
-                  return __WEBPACK_IMPORTED_MODULE_6__api__["a" /* default */].posts().perPage(10).page(_this.state.page + 1);
-
-                case 5:
-                  posts = _context.sent;
-
-                  if (posts.length > 0) {
-                    _this.setState({
-                      posts: _this.state.posts.concat(posts),
-                      page: _this.state.page + 1
-                    });
-                  } else {
-                    _this.setState({
-                      hasMore: false
-                    });
-                  }
-
-                  _this.setState({
-                    loading: false
-                  });
-
-                  if (typeof window !== 'undefined') {
-                    window.wow.sync();
-                  }
-
-                case 9:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee, this);
-        }));
-
-        return function value() {
-          return _value.apply(this, arguments);
-        };
-      }()
-    }), Object.defineProperty(_assertThisInitialized(_this), "initializeLightbox", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function value(post) {
-        window.images = [];
-        window.images = Object(__WEBPACK_IMPORTED_MODULE_8__components_helpers__["a" /* buildImageaArray */])(post);
-
-        _this.setState({
-          isOpen: true
-        });
-      }
-    }), _temp));
+    return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
   }
 
-  _createClass(Home, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      this.setState({
-        posts: this.props.posts
-      });
-    }
-  }, {
+  _createClass(About, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       if (typeof window !== 'undefined') {
@@ -25399,43 +23942,31 @@ function (_React$PureComponent) {
       }
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      if (typeof window !== 'undefined') {
-        window.wow.sync();
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      var _state = this.state,
-          posts = _state.posts,
-          photoIndex = _state.photoIndex,
-          isOpen = _state.isOpen;
-      var title = 'Eat This Beef, bruh';
-      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("section", {
+      var posts = this.props.posts;
+      var title = 'Eat This Beef, bruh - About';
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 83
+          lineNumber: 28
         }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_next_head___default.a, {
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_head___default.a, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84
+          lineNumber: 29
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("title", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 85
+          lineNumber: 30
         }
       }, title), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("meta", {
         property: "og:title",
         content: title,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86
+          lineNumber: 31
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("meta", {
         property: "og:image",
@@ -25444,14 +23975,14 @@ function (_React$PureComponent) {
         })[0],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 87
+          lineNumber: 32
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("meta", {
         name: "twitter:title",
         content: title,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88
+          lineNumber: 33
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("meta", {
         name: "twitter:image",
@@ -25460,227 +23991,116 @@ function (_React$PureComponent) {
         })[0],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 89
+          lineNumber: 34
         }
-      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("section", {
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+        className: 'intro about',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 91
+          lineNumber: 36
         }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
-        src: '/static/img/logo.png',
-        className: 'logo',
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92
+          lineNumber: 37
         }
-      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
-        src: '/static/img/logo-stacked.png',
-        className: 'logo stacked',
+      }, "About"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 93
+          lineNumber: 38
         }
-      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h1", {
+      }, "Hello there. Top of the website to you. "), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94
+          lineNumber: 39
         }
-      }, "WELCOME TO DFW'S UNDISPUTED MOST EPIC BURGER RANKING PUBLICATION OF ALL TIME"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-        className: 'intro',
+      }, "I'm Brian Parks and I love to eat burgers. I also love to make computers go beep boop beep. The third and latest version of eat this beef was built from the ground up and is utilizing the newest steamy hotness including but not limited to: the Wordpress REST API (bc super friendly CMS), react, next.js, express, SASS et al. It also renders on both the server and client side, such neat! Much SEO."), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 40
         }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
+      }, "You can check out the ", __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
+        href: "https://github.com/omgcyrilic/etb",
+        target: "blank",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 96
+          lineNumber: 40
         }
-      }, "Hi there. Eat this beef has been searching for the best burgers in Dallas, TX for eight years and our life long quest continues to this day. We check out new places almost every week so drop in again as the top ten is ever-evolving. ETB is burger centric in that we're not concerned with price, atmosphere, or service. It's all about the burger. We will however comment on the aforementioned if the restaurant delivers above and beyond. We prefer a \"best of the best\" short list as opposed to a lengthy list of options coupled with a complicated ranking system. Less is more."), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
+      }, "source code"), " if you're feelin' saucy, or if you're a shameless nerd."), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97
+          lineNumber: 41
         }
-      }, "Established in 2010, eat this beef has cataloged ", __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("span", {
+      }, "And now, a message about burgers:"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97
+          lineNumber: 42
         }
-      }, "219"), " burgers in the DFW area to date. Fight us.")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h1", {
+      }, "\"BURGER. The mere mention of the word elicits a Pavlovian salivation from men and women the world over. An easily uttered two syllables used to define a food both beautiful in its pure minimalist pragmatism and fascinating in its immeasurable permutations."), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99
+          lineNumber: 43
         }
-      }, "BURGERS THAT JUST MET OUR BELLIES")), isOpen && __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Lightbox, {
-        mainSrc: window.images[photoIndex].src,
-        nextSrc: window.images[(photoIndex + 1) % window.images.length].src,
-        prevSrc: window.images[(photoIndex + window.images.length - 1) % window.images.length].src,
-        imageTitle: window.images[photoIndex].title,
-        animationOnKeyInput: 'true',
-        onCloseRequest: function onCloseRequest() {
-          return _this2.setState({
-            isOpen: false
-          });
-        },
-        onMovePrevRequest: function onMovePrevRequest() {
-          return _this2.setState({
-            photoIndex: (photoIndex + window.images.length - 1) % window.images.length
-          });
-        },
-        onMoveNextRequest: function onMoveNextRequest() {
-          return _this2.setState({
-            photoIndex: (photoIndex + 1) % window.images.length
-          });
-        },
+      }, "Bun + Patty + Various Adornments + Bun = Burger."), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 102
+          lineNumber: 44
         }
-      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("section", {
-        className: 'restaurant-list',
+      }, "An equation as simple but profound as E = MC2. But could it possibly be this simple? Is one bun not a crown, a piece of regal headwear meant to exalt man's greatest achievement? And is the other bun not a foundation, bearing not merely meat, but carrying all the worldly burdens of Atlas himself? And is not all that lies between these starchy sentinels a testament to humanity's ever evolving ingenuity?"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 121
+          lineNumber: 45
         }
-      }, posts.map(function (post) {
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("section", {
-          key: post.id,
-          className: 'restaurant' + Object(__WEBPACK_IMPORTED_MODULE_8__components_helpers__["e" /* getWowClass */])(_this2.window),
-          "data-wow-duration": ".5s",
-          "data-wow-offset": "10",
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 124
-          }
-        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
-          src: '/static/img/' + Object(__WEBPACK_IMPORTED_MODULE_8__components_helpers__["c" /* getCategoryIcon */])(post.section) + '.png',
-          className: 'icon',
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 125
-          }
-        }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_next_link___default.a, {
-          href: {
-            pathname: '/restaurant',
-            query: {
-              slug: post.slug
-            }
-          },
-          as: "/restaurant/".concat(post.slug),
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 126
-          }
-        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 135
-          }
-        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h2", {
-          dangerouslySetInnerHTML: {
-            __html: post.title.rendered
-          },
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 136
-          }
-        }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-          className: 'address',
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 139
-          }
-        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
-          href: Object(__WEBPACK_IMPORTED_MODULE_8__components_helpers__["d" /* getGoogleMapsUrl */])(post),
-          target: "_blank",
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 140
-          }
-        }, post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", {
-          className: 'img-thumb',
-          onClick: function onClick() {
-            return _this2.initializeLightbox(post);
-          },
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 142
-          }
-        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
-          src: '/static/img/' + post.imgthumb,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 143
-          }
-        })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-          className: 'copy',
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 145
-          }
-        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-          dangerouslySetInnerHTML: {
-            __html: post.content.rendered
-          },
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 146
-          }
-        })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-          className: 'date',
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 148
-          }
-        }, "Masticated in: ", Object(__WEBPACK_IMPORTED_MODULE_8__components_helpers__["b" /* dateDisplay */])(post.date)));
-      })), this.state.hasMore && __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_waypoint__["a" /* default */], {
-        key: this.state.page,
-        onEnter: this.loadMore,
+      }, "These are questions that burdened mankind for time immemorial. Truly, mankind and the burger have been inexorably linked for as long as civilization itself. Studies of the fossil record show early hominids developed tools and fire in attempts at an early \"proto-burger.\" Archaeology shows that early man descended from the African highlands to the fertile crescent of Mesopotamia, solely to domesticate the grains and beasts for the world's first true burger. Humans would soon populate every corner of the earth, following large game over the Bering land bridge in a quest for the exotic burgers of the American continents. It is reported Aristotle once scoffed, \"Ye gods can keep ye nectar and ye ambrosia, for Man has the Burger!\""), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 153
+          lineNumber: 46
         }
-      }), this.state.loading && __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-        className: 'loading-more',
+      }, "For centuries the burger remained the defining force in history. Columbus set sail towards the western horizon, having heard rumors of a new world rich in gold, silver, and delicious burgers. Indeed, the very first conquistadors left behind ship loads of cattle on the wide Texas plains, in hopes that future voyages would return to a land of sufficient burger resources. Henry Ford developed the assembly line to create the world's most efficient burger, only to later realize the process could also be used in the manufacture of cars. And at man's zenith, he would walk on the moon, just to see if any delicious burgers lied beyond earth's surface."), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 154
+          lineNumber: 47
         }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
-        src: '/static/img/logo-burger.png',
+      }, "And so the quest for the perfect burger continues here at Eat This Beef! We will scour the four corners of the earth, leaving no bun unturned. For as there are countless scholars studying the artistry of the Mona Lisa, the rich symbolism of Moby Dick, and the engineering prowess of the Coliseum, Eat This Beef shall be the definitive scholars of the artistry, richness, and engineering might of The Burger. We invite you to join us bite by bite as every burger shall be studied, savored, celebrated, and saluted.\""), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 154
+          lineNumber: 48
         }
-      })));
+      }, "-- ", __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
+        href: "https://www.facebook.com/anthony.schmeck",
+        target: "_blank",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 48
+        }
+      }, "Anthony Schmeck"))));
     }
   }], [{
     key: "getInitialProps",
     value: function () {
       var _getInitialProps = _asyncToGenerator(
       /*#__PURE__*/
-      __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.mark(function _callee2() {
+      __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.mark(function _callee() {
         var posts;
-        return __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        return __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _context2.next = 2;
-                return __WEBPACK_IMPORTED_MODULE_6__api__["a" /* default */].posts().perPage(10).page(1);
+                _context.next = 2;
+                return __WEBPACK_IMPORTED_MODULE_3__api__["a" /* default */].posts().order('asc').orderby('menu_order').perPage(10).category(2).embed();
 
               case 2:
-                posts = _context2.sent;
-                return _context2.abrupt("return", {
+                posts = _context.sent;
+                return _context.abrupt("return", {
                   posts: posts
                 });
 
               case 4:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee, this);
       }));
 
       return function getInitialProps() {
@@ -25689,10 +24109,10 @@ function (_React$PureComponent) {
     }()
   }]);
 
-  return Home;
+  return About;
 }(__WEBPACK_IMPORTED_MODULE_1_react___default.a.PureComponent);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(__WEBPACK_IMPORTED_MODULE_7__components_withLayout__["a" /* default */])(Home));
+/* harmony default export */ __webpack_exports__["default"] = (Object(__WEBPACK_IMPORTED_MODULE_4__components_withLayout__["a" /* default */])(About));
     (function (Component, route) {
       if(!Component) return
       if (false) return
@@ -25709,7 +24129,7 @@ function (_React$PureComponent) {
           next.router.update(r, Component)
         }
       }
-    })(typeof __webpack_exports__ !== 'undefined' ? __webpack_exports__.default : (module.exports.default || module.exports), "/")
+    })(typeof __webpack_exports__ !== 'undefined' ? __webpack_exports__.default : (module.exports.default || module.exports), "/about")
   
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/harmony-module.js")(module)))
 
@@ -25728,10 +24148,10 @@ function (_React$PureComponent) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 10:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./pages/index.js");
+module.exports = __webpack_require__("./pages/about.js");
 
 
 /***/ }),
@@ -25743,8 +24163,8 @@ module.exports = __webpack_require__("./pages/index.js");
 
 /***/ })
 
-},[3])
+},[10])
           return { page: comp.default }
         })
       ;
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=about.js.map

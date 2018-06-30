@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -587,7 +587,7 @@ var withLayout = function withLayout(WrappedComponent) {
 
 /***/ }),
 
-/***/ "./pages/restaurant.js":
+/***/ "./pages/destination.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -596,17 +596,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("react");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_dynamic__ = __webpack_require__("next/dynamic");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_dynamic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_next_dynamic__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_head__ = __webpack_require__("next/head");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_head___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_next_head__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__api__ = __webpack_require__("./api.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_withLayout__ = __webpack_require__("./components/withLayout.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_helpers__ = __webpack_require__("./components/helpers.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_waypoint__ = __webpack_require__("react-waypoint");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_waypoint___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_waypoint__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_dynamic__ = __webpack_require__("next/dynamic");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_dynamic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_next_dynamic__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_next_head__ = __webpack_require__("next/head");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_next_head___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_next_head__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_next_link__ = __webpack_require__("next/link");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_next_link__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api__ = __webpack_require__("./api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_withLayout__ = __webpack_require__("./components/withLayout.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_helpers__ = __webpack_require__("./components/helpers.js");
 
 
 
-var _jsxFileName = "/Users/brian.parks/Documents/etb/pages/restaurant.js";
+var _jsxFileName = "/Users/brian.parks/Documents/etb/pages/destination.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -630,7 +634,9 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
-var Lightbox = __WEBPACK_IMPORTED_MODULE_2_next_dynamic___default()( false ? new (require('next/dynamic').SameLoopPromise)(function (resolve, reject) {
+
+
+var Lightbox = __WEBPACK_IMPORTED_MODULE_3_next_dynamic___default()( false ? new (require('next/dynamic').SameLoopPromise)(function (resolve, reject) {
   eval('require.ensure = function (deps, callback) { callback(require) }');
 
   require.ensure([], function (require) {
@@ -660,37 +666,98 @@ var Lightbox = __WEBPACK_IMPORTED_MODULE_2_next_dynamic___default()( false ? new
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 }));
 
-var Restaurant =
+var Destination =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  _inherits(Restaurant, _React$PureComponent);
+  _inherits(Destination, _React$PureComponent);
 
-  function Restaurant() {
+  function Destination() {
     var _ref;
 
     var _temp, _this;
 
-    _classCallCheck(this, Restaurant);
+    _classCallCheck(this, Destination);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = Restaurant.__proto__ || Object.getPrototypeOf(Restaurant)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "state", {
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_ref = Destination.__proto__ || Object.getPrototypeOf(Destination)).call.apply(_ref, [this].concat(args))), Object.defineProperty(_assertThisInitialized(_this), "state", {
       configurable: true,
       enumerable: true,
       writable: true,
       value: {
+        page: 1,
+        loading: false,
+        hasMore: true,
         photoIndex: 0,
         isOpen: false
       }
+    }), Object.defineProperty(_assertThisInitialized(_this), "loadMore", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function () {
+        var _value = _asyncToGenerator(
+        /*#__PURE__*/
+        __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.mark(function _callee() {
+          var posts;
+          return __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  if (!(_this.state.loading || !_this.state.hasMore)) {
+                    _context.next = 2;
+                    break;
+                  }
+
+                  return _context.abrupt("return");
+
+                case 2:
+                  _this.setState({
+                    loading: true
+                  });
+
+                  _context.next = 5;
+                  return __WEBPACK_IMPORTED_MODULE_6__api__["a" /* default */].posts().order('asc').orderby('title').perPage(10).category(5).page(_this.state.page + 1).embed();
+
+                case 5:
+                  posts = _context.sent;
+
+                  if (posts.length > 0) {
+                    _this.setState({
+                      posts: _this.state.posts.concat(posts),
+                      page: _this.state.page + 1
+                    });
+                  } else {
+                    _this.setState({
+                      hasMore: false
+                    });
+                  }
+
+                  _this.setState({
+                    loading: false
+                  });
+
+                case 8:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        return function value() {
+          return _value.apply(this, arguments);
+        };
+      }()
     }), Object.defineProperty(_assertThisInitialized(_this), "initializeLightbox", {
       configurable: true,
       enumerable: true,
       writable: true,
       value: function value(post) {
         window.images = [];
-        window.images = Object(__WEBPACK_IMPORTED_MODULE_6__components_helpers__["a" /* buildImageaArray */])(post);
+        window.images = Object(__WEBPACK_IMPORTED_MODULE_8__components_helpers__["a" /* buildImageaArray */])(post);
 
         _this.setState({
           isOpen: true
@@ -699,11 +766,11 @@ function (_React$PureComponent) {
     }), _temp));
   }
 
-  _createClass(Restaurant, [{
+  _createClass(Destination, [{
     key: "componentWillMount",
     value: function componentWillMount() {
       this.setState({
-        post: this.props.post
+        posts: this.props.posts
       });
     }
   }, {
@@ -718,78 +785,80 @@ function (_React$PureComponent) {
       }
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (typeof window !== 'undefined') {
+        window.wow.sync();
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
       var _state = this.state,
-          post = _state.post,
+          posts = _state.posts,
           photoIndex = _state.photoIndex,
           isOpen = _state.isOpen;
-      var title = 'Eat This Beef, bruh';
+      var title = 'Eat This Beef, bruh - Destination';
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56
+          lineNumber: 81
         }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_next_head___default.a, {
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_next_head___default.a, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57
+          lineNumber: 82
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("title", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 58
+          lineNumber: 83
         }
       }, title), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("meta", {
         property: "og:title",
         content: title,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 59
+          lineNumber: 84
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("meta", {
         property: "og:image",
-        content: '/static/img/' + post.img,
+        content: '/static/img/' + posts.map(function (post) {
+          return post.img;
+        })[0],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 60
+          lineNumber: 85
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("meta", {
         name: "twitter:title",
         content: title,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 61
+          lineNumber: 86
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("meta", {
         name: "twitter:image",
-        content: '/static/img/' + post.img,
+        content: '/static/img/' + posts.map(function (post) {
+          return post.img;
+        })[0],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 62
+          lineNumber: 87
         }
-      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("section", {
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 64
+          lineNumber: 89
         }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
-        src: '/static/img/logo.png',
-        className: 'logo',
+      }, "Destination"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 65
+          lineNumber: 90
         }
-      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
-        src: '/static/img/logo-stacked.png',
-        className: 'logo stacked',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 66
-        }
-      })), isOpen && __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Lightbox, {
+      }, "The list broadens. Who doesn't love a good burger when you're on vacation? These are the burger joints outside of DFW worth checking out if you're in the area."), isOpen && __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(Lightbox, {
         mainSrc: window.images[photoIndex].src,
         nextSrc: window.images[(photoIndex + 1) % window.images.length].src,
         prevSrc: window.images[(photoIndex + window.images.length - 1) % window.images.length].src,
@@ -812,135 +881,158 @@ function (_React$PureComponent) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 69
+          lineNumber: 92
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("section", {
         className: 'restaurant-list',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88
+          lineNumber: 111
         }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("section", {
-        key: post.id,
-        className: 'restaurant single ' + Object(__WEBPACK_IMPORTED_MODULE_6__components_helpers__["e" /* getWowClass */])(this.window),
-        "data-wow-duration": ".5s",
+      }, posts.map(function (post) {
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("section", {
+          key: post.id,
+          className: 'restaurant' + Object(__WEBPACK_IMPORTED_MODULE_8__components_helpers__["e" /* getWowClass */])(_this2.window),
+          "data-wow-duration": ".5s",
+          "data-wow-offset": "10",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 114
+          }
+        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
+          src: '/static/img/' + Object(__WEBPACK_IMPORTED_MODULE_8__components_helpers__["c" /* getCategoryIcon */])(post.section) + '.png',
+          className: 'icon',
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 115
+          }
+        }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_next_link___default.a, {
+          href: {
+            pathname: '/restaurant',
+            query: {
+              slug: post.slug
+            }
+          },
+          as: "/restaurant/".concat(post.slug),
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 116
+          }
+        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 125
+          }
+        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h2", {
+          dangerouslySetInnerHTML: {
+            __html: post.title.rendered
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 126
+          }
+        }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+          className: 'address',
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 129
+          }
+        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
+          href: Object(__WEBPACK_IMPORTED_MODULE_8__components_helpers__["d" /* getGoogleMapsUrl */])(post),
+          target: "_blank",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 130
+          }
+        }, post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", {
+          className: 'img-thumb',
+          onClick: function onClick() {
+            return _this2.initializeLightbox(post);
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 132
+          }
+        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
+          src: '/static/img/' + post.imgthumb,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 133
+          }
+        })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+          className: 'copy',
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 135
+          }
+        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+          dangerouslySetInnerHTML: {
+            __html: post.content.rendered
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 136
+          }
+        })));
+      })), this.state.hasMore && __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_waypoint___default.a, {
+        key: this.state.page,
+        onEnter: this.loadMore,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 89
+          lineNumber: 142
         }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h2", {
-        dangerouslySetInnerHTML: {
-          __html: post.title.rendered
-        },
+      }), this.state.loading && __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+        className: 'loading-more',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 90
-        }
-      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
-        src: '/static/img/' + Object(__WEBPACK_IMPORTED_MODULE_6__components_helpers__["c" /* getCategoryIcon */])(post.section) + '.png',
-        className: 'icon',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 91
-        }
-      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-        className: 'address',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 92
-        }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
-        href: Object(__WEBPACK_IMPORTED_MODULE_6__components_helpers__["d" /* getGoogleMapsUrl */])(post),
-        target: "_blank",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 93
-        }
-      }, post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", {
-        className: 'img-thumb',
-        onClick: function onClick() {
-          return _this2.initializeLightbox(post);
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 143
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("img", {
-        src: '/static/img/' + post.imgthumb,
+        src: '/static/img/logo-burger.png',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 96
+          lineNumber: 143
         }
-      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-        className: 'copy',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 98
-        }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
-        dangerouslySetInnerHTML: {
-          __html: post.content.rendered
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 99
-        }
-      })))));
+      })));
     }
   }], [{
     key: "getInitialProps",
     value: function () {
       var _getInitialProps = _asyncToGenerator(
       /*#__PURE__*/
-      __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.mark(function _callee(_ref2) {
-        var slug, res, post;
-        return __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+      __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.mark(function _callee2() {
+        var posts;
+        return __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                slug = _ref2.query.slug, res = _ref2.res;
-                _context.next = 3;
-                return __WEBPACK_IMPORTED_MODULE_4__api__["a" /* default */].posts().slug(slug).embed();
+                _context2.next = 2;
+                return __WEBPACK_IMPORTED_MODULE_6__api__["a" /* default */].posts().order('asc').orderby('title').perPage(10).category(5).embed();
 
-              case 3:
-                post = _context.sent[0];
-
-                if (!post) {
-                  _context.next = 6;
-                  break;
-                }
-
-                return _context.abrupt("return", {
-                  post: post
+              case 2:
+                posts = _context2.sent;
+                return _context2.abrupt("return", {
+                  posts: posts
                 });
 
-              case 6:
-                if (res) {
-                  res.statusCode = 404;
-                }
-
-                return _context.abrupt("return", {
-                  error: true
-                });
-
-              case 8:
+              case 4:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
-      return function getInitialProps(_x) {
+      return function getInitialProps() {
         return _getInitialProps.apply(this, arguments);
       };
     }()
   }]);
 
-  return Restaurant;
+  return Destination;
 }(__WEBPACK_IMPORTED_MODULE_1_react___default.a.PureComponent);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(__WEBPACK_IMPORTED_MODULE_5__components_withLayout__["a" /* default */])(Restaurant));
+/* harmony default export */ __webpack_exports__["default"] = (Object(__WEBPACK_IMPORTED_MODULE_7__components_withLayout__["a" /* default */])(Destination));
 
 /***/ }),
 
@@ -957,10 +1049,10 @@ function (_React$PureComponent) {
 
 /***/ }),
 
-/***/ 4:
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./pages/restaurant.js");
+module.exports = __webpack_require__("./pages/destination.js");
 
 
 /***/ }),
@@ -1042,6 +1134,13 @@ module.exports = require("react-image-lightbox");
 
 /***/ }),
 
+/***/ "react-waypoint":
+/***/ (function(module, exports) {
+
+module.exports = require("react-waypoint");
+
+/***/ }),
+
 /***/ "wowjs":
 /***/ (function(module, exports) {
 
@@ -1057,4 +1156,4 @@ module.exports = require("wpapi");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=restaurant.js.map
+//# sourceMappingURL=destination.js.map

@@ -5,7 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import api from '../api';
 import withLayout from '../components/withLayout';
-import { buildImageaArray, getGoogleMapsUrl, getWowClass } from '/components/helpers';
+import { buildImageaArray, getCategoryIcon, getGoogleMapsUrl, getWowClass } from '/components/helpers';
 
 const Lightbox = dynamic(import('react-image-lightbox'));
 
@@ -112,6 +112,7 @@ class HoorableMention extends React.PureComponent {
           {
             posts.map(post => (
               <section key={post.id} className={'restaurant' + getWowClass(this.window)} data-wow-duration=".5s" data-wow-offset="10">
+                <img src={'/static/img/' + getCategoryIcon(post.section) + '.png'} className={'icon'}/>
                 <Link
                   href={{
                     pathname: '/restaurant',
@@ -122,7 +123,7 @@ class HoorableMention extends React.PureComponent {
                   as={`/restaurant/${post.slug}`}
                 >
                   <a>
-                    <h2 dangerouslySetInnerHTML={{ __html: post.rank + '. ' + post.title.rendered }} />
+                    <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                   </a>
                 </Link>
                 <div className={'address'}>
@@ -139,7 +140,7 @@ class HoorableMention extends React.PureComponent {
           }
         </section>
         {this.state.hasMore && <Waypoint key={this.state.page} onEnter={this.loadMore} />}
-        {this.state.loading && <div className={'loading-more'}><img src={'/static/img/logo-small.png'} /> </div>}
+        {this.state.loading && <div className={'loading-more'}><img src={'/static/img/logo-burger.png'} /></div>}
       </div>
     );
   }
