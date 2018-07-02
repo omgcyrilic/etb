@@ -18,6 +18,7 @@ const withLayout = (WrappedComponent) => {
   class WithLayout extends React.PureComponent {
     componentDidMount() {
       $(document).ready(function () {
+        console.log('yeah bro!');
         var $hamburger = $('.hamburger');
         var isActive = false;
 
@@ -60,10 +61,8 @@ const withLayout = (WrappedComponent) => {
         });
       });
 
-      if(typeof window !== 'undefined') {
-        ReactGA.initialize('UA-3241810-3');
-        ReactGA.pageview(window.location.pathname + window.location.search);
-      }
+      ReactGA.initialize('UA-3241810-3');
+      ReactGA.pageview(window.location.pathname + window.location.search);
     }
     static async getInitialProps(...args) {
       if (typeof WrappedComponent.getInitialProps === 'function') {
