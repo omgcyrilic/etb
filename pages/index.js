@@ -57,7 +57,7 @@ class Home extends React.PureComponent {
     if (typeof window !== 'undefined') {
       window.WOW = require('wowjs');
       window.wow = new WOW.WOW({
-        live: true
+        live: false
       });
       window.wow.init();
     }
