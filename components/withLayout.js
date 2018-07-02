@@ -61,7 +61,7 @@ const withLayout = (WrappedComponent) => {
       });
 
       if(typeof window !== 'undefined') {
-        ReactGA.initialize('UA-000000-01');
+        ReactGA.initialize('UA-3241810-3');
         ReactGA.pageview(window.location.pathname + window.location.search);
       }
     }

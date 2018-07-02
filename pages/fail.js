@@ -5,7 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import api from '../api';
 import withLayout from '../components/withLayout';
-import { buildImageaArray, getCategoryIcon, getGoogleMapsUrl, getWowClass } from '/components/helpers';
+import { buildImageaArray, getGoogleMapsUrl, getWowClass } from '/components/helpers';
 
 const Lightbox = dynamic(import('react-image-lightbox'));
 
@@ -112,7 +112,6 @@ class Fail extends React.PureComponent {
           {
             posts.map(post => (
               <section key={post.id} className={'restaurant ' + getWowClass(this.window)} data-wow-duration=".5s" data-wow-offset="10">
-                <img src={'/static/img/' + getCategoryIcon(post.section) + '.png'} className={'icon'}/>
                 <Link
                   href={{
                     pathname: '/restaurant',

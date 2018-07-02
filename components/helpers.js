@@ -18,10 +18,15 @@ export const dateDisplay = (dateString) => {
   return monthText + ' ' + year;
 };
 
-export const getCategoryIcon = (category) => {
+export const getCategoryTag = (category, rank) => {
   var categoryId = parseInt(category[0]);
-  if (categoryId === 1) {
-    return 'top';
+  var rank = parseInt(rank[0]);
+
+  if (categoryId === 1 && rank > 0) {
+    if (rank <= 99) {
+      rank = ('0'+rank).slice(-2);
+    }
+    return 'top-' + rank; 
   }
   if (categoryId === 2) {
     return 'hm';

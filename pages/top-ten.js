@@ -56,7 +56,7 @@ class TopTen extends React.PureComponent {
           <meta name="twitter:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
         </Head>
         <h1>THE TOP TEN</h1>
-        <h3>The best of the best in Dallas, TX</h3>
+        <h3>The best of the best in Dallas Texas</h3>
         {isOpen && (
           <Lightbox
             mainSrc={window.images[photoIndex].src}

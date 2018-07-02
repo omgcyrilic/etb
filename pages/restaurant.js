@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import api from '../api';
 import withLayout from '../components/withLayout';
-import { buildImageaArray, getCategoryIcon, getGoogleMapsUrl, getWowClass } from '/components/helpers';
+import { buildImageaArray, getGoogleMapsUrl, getWowClass } from '/components/helpers';
 
 const Lightbox = dynamic(import('react-image-lightbox'));
 
@@ -88,7 +88,6 @@ class Restaurant extends React.PureComponent {
         <section className={'restaurant-list'}>
           <section key={post.id} className={'restaurant single '  + getWowClass(this.window)} data-wow-duration=".5s">
             <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-            <img src={'/static/img/' + getCategoryIcon(post.section) + '.png'} className={'icon'}/>          
             <div className={'address'}>
               <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
             </div>
