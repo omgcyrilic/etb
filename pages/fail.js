@@ -94,7 +94,7 @@ class Fail extends React.PureComponent {
             nextSrc={window.images[(photoIndex + 1) % window.images.length].src}
             prevSrc={window.images[(photoIndex + window.images.length - 1) % window.images.length].src}
             imageTitle={window.images[photoIndex].title}
-            animationOnKeyInput={'true'}
+            animationOnKeyInput={true}
             onCloseRequest={() => this.setState({ isOpen: false })}
             onMovePrevRequest={() =>
               this.setState({
