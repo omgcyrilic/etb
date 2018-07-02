@@ -62,8 +62,6 @@ const withLayout = (WrappedComponent) => {
 
       ReactGA.initialize('UA-3241810-3');
       ReactGA.pageview(window.location.pathname + window.location.search);
-
-      console.log('yeah bro!');
     }
     static async getInitialProps(...args) {
       if (typeof WrappedComponent.getInitialProps === 'function') {
