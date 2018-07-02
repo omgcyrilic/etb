@@ -309,12 +309,14 @@
     -webkit-animation-delay: 0ms;
     animation-delay: 0ms;
   }
+
   .ril__loadingContainer {
     position: absolute;
-    top: 0;
+    top: 49%;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    z-index: 1;
   }
   .ril__imagePrev .ril__loadingContainer, .ril__imageNext .ril__loadingContainer {
     display: none;
