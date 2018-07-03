@@ -12,6 +12,7 @@ const Lightbox = dynamic(import('react-image-lightbox'));
 class Home extends React.PureComponent {
   state = {
     page: 1,
+    totalPages: 1,
     loading: false,
     hasMore: true,
     photoIndex: 0,
@@ -47,10 +48,19 @@ class Home extends React.PureComponent {
     }
   }
 
+  getTotalPages = async () => {
+    await api.posts().perPage(10).page(1).then((response) => {
+      this.setState({
+        totalPages: response._paging.totalPages
+      });
+    });
+  }
+
   componentWillMount() {
     this.setState({
       posts: this.props.posts
     });
+    this.getTotalPages();
   };
 
   componentDidMount() {
@@ -146,8 +156,8 @@ class Home extends React.PureComponent {
             ))
           }
         </section>
-        {this.state.hasMore && <Waypoint key={this.state.page} onEnter={this.loadMore} />}
-        {this.state.loading && <div className={'loading-more'}><img src={'/static/img/logo-burger.png'} /></div>}
+        {this.state.page < this.state.totalPages && this.state.hasMore && <Waypoint key={this.state.page} onEnter={this.loadMore} />}
+        {this.state.page < this.state.totalPages && this.state.loading && <div className={'loading-more'}><img src={'/static/img/logo-burger.png'} /></div>}
       </section>
     );
   }

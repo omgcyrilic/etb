@@ -6,9 +6,6 @@
 @import 'nprogress';
 @import 'theme';
 
-* {
-  box-sizing: border-box;
-}
 body,
 html {
   background-color: $maastricht-blue;
@@ -19,6 +16,11 @@ html {
   }
   ::-moz-selection {
     background: $aquamarine;
+  }
+  &.blocked {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
   }
 }
 a {

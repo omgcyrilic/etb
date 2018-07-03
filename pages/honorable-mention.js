@@ -12,6 +12,7 @@ const Lightbox = dynamic(import('react-image-lightbox'));
 class HoorableMention extends React.PureComponent {
   state = {
     page: 1,
+    totalPages: 1,
     loading: false,
     hasMore: true,
     photoIndex: 0,
@@ -19,7 +20,7 @@ class HoorableMention extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().order('asc').orderby('title').perPage(10).category(3).embed();
+    const posts = await api.posts().order('asc').orderby('title').perPage(10).category(3);
     return { posts };
   }
 
@@ -29,7 +30,7 @@ class HoorableMention extends React.PureComponent {
     }
 
     this.setState({ loading: true});
-    const posts = await api.posts().perPage(10).page(this.state.page + 1).embed();
+    const posts = await api.posts().order('asc').orderby('title').perPage(10).category(3).page(this.state.page + 1);
     if (posts.length > 0) {
       this.setState({
         posts: this.state.posts.concat(posts),
@@ -44,10 +45,19 @@ class HoorableMention extends React.PureComponent {
     });
   }
 
+  getTotalPages = async () => {
+    await api.posts().order('asc').orderby('title').perPage(10).category(3).then((response) => {
+      this.setState({
+        totalPages: response._paging.totalPages
+      });
+    });
+  }
+
   componentWillMount() {
     this.setState({
       posts: this.props.posts
     });
+    this.getTotalPages();
   };
   
   componentDidMount() {
@@ -138,8 +148,8 @@ class HoorableMention extends React.PureComponent {
             ))
           }
         </section>
-        {this.state.hasMore && <Waypoint key={this.state.page} onEnter={this.loadMore} />}
-        {this.state.loading && <div className={'loading-more'}><img src={'/static/img/logo-burger.png'} /></div>}
+        {this.state.page < this.state.totalPages && this.state.hasMore && <Waypoint key={this.state.page} onEnter={this.loadMore} />}
+        {this.state.page < this.state.totalPages && this.state.loading && <div className={'loading-more'}><img src={'/static/img/logo-burger.png'} /></div>}
       </div>
     );
   }

@@ -58,8 +58,13 @@ const withLayout = (WrappedComponent) => {
           }),
           top = !1);
         });
-      });
 
+        $hamburger.removeClass('is-active');
+        $('html, body').removeClass('blocked');
+        $('.menu').removeClass('expanded');
+        $('aside').fadeOut('200');
+      });
+      
       ReactGA.initialize('UA-3241810-3');
       ReactGA.pageview(window.location.pathname + window.location.search);
     }
