@@ -136,10 +136,6 @@ p {
   line-height: 26px;
 }
 main {
-  // background-image: url(/static/img/dallas-map.jpg);
-  // background-position: top center;
-  // background-repeat: no-repeat;
-  // background-size: 1642px 1200px;
   padding-top: 40px;
   text-align: center;
 }
@@ -241,6 +237,8 @@ footer {
     background-color: $aquamarine;
     border-radius: 3px;
     color: $mine-shaft;
+    display: inline-block;
+    min-width: 35px;
     padding: 2px;
   }
 }
@@ -250,10 +248,10 @@ footer {
   margin: 0 40px 70px 0;
   .restaurant {
     background: $baby-powder;
-    border: 0;
+    border: 2px solid transparent;
     border-radius: 6px;
     color: $mine-shaft;
-    margin: 40px 0 0 40px;
+    margin: 36px 0 0 36px;
     min-height: 285px;
     padding: 20px;
     position: relative;
@@ -271,6 +269,19 @@ footer {
       }
       .address {
         margin: 0 0 10px 0;
+      }
+    }
+    &.closed {
+      border: 2px solid $tractor-red;
+      > a {
+        > h2 {
+          margin-top: 10px;
+        }
+      }
+      &:before {
+        color: $tractor-red;
+        font-weight: bold;
+        content: "CLOSED";
       }
     }
     &:after {

@@ -5,7 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import api from '../api';
 import withLayout from '../components/withLayout';
-import { buildImageaArray, dateDisplay, getCategoryTag, getGoogleMapsUrl, getWowClass } from '/components/helpers';
+import { buildImageaArray, getClosedClass, dateDisplay, getCategoryTag, getGoogleMapsUrl, getWowClass } from '/components/helpers';
 
 const Lightbox = dynamic(import('react-image-lightbox'));
 
@@ -20,7 +20,7 @@ class Home extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().perPage(10).page(1);
+    const posts = await api.posts().perPage(10).page(1).order('desc').orderby('date');
     return { posts };
   }
 
@@ -30,7 +30,7 @@ class Home extends React.PureComponent {
     }
 
     this.setState({ loading: true});
-    const posts = await api.posts().perPage(10).page(this.state.page + 1);
+    const posts = await api.posts().perPage(10).page(this.state.page + 1).order('desc').orderby('date');
     if (posts.length > 0) {
       this.setState({
         posts: this.state.posts.concat(posts),
@@ -127,7 +127,7 @@ class Home extends React.PureComponent {
         <section className={'restaurant-list'}>
           {
             posts.map(post => (
-              <section key={post.id} className={'restaurant ' + getWowClass(this.window)} data-wow-duration=".5s" data-wow-offset="10">
+              <section key={post.id} className={'restaurant ' + getWowClass(this.window) + ' ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
                 <img src={'/static/img/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
                 <Link
                   href={{

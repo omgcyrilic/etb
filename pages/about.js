@@ -1,16 +1,33 @@
+import api from '../api';
 import React from 'react';
 import Head from 'next/head';
-import api from '../api';
 import withLayout from '../components/withLayout';
 
 class About extends React.PureComponent {
-  static async getInitialProps() {
-    const posts = await api.posts().order('asc').orderby('menu_order').perPage(10).category(2).embed();
-    return { posts };
+  state = {
+    totalRestaurants: 0,
+    totalDestinationRestaruants: 0,
+  }
+
+  getTotalRestaurants = async () => {
+    await api.posts().then((response) => {
+      this.setState({
+        totalRestaurants: response._paging.total
+      });
+    });
+  }
+
+  totalDestinationRestaruants = async () => {
+    await api.posts().category(5).then((response) => {
+      this.setState({
+        totalDestinationRestaruants: response._paging.total
+      });
+      console.log(response);
+    });
   }
 
   componentDidMount() {
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.WOW = require('wowjs');
 
       window.wow = new WOW.WOW({
@@ -20,8 +37,12 @@ class About extends React.PureComponent {
     }
   }
 
+  componentWillMount() {
+    this.getTotalRestaurants();
+    this.totalDestinationRestaruants();
+  };
+
   render() {
-    const { posts } = this.props;
     const title = 'Eat This Beef, bruh - About';
 
     return (
@@ -29,15 +50,13 @@ class About extends React.PureComponent {
         <Head>
           <title>{title}</title >
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
         </Head>
         <div className={'intro about'}>
           <h1>About</h1>
           <p>Hello there. Top of the website to you. </p>
           <p>Eat this beef has been searching for the best burgers in Dallas Texas for eight years. We check out new places almost every week so drop in again as the top ten is ever-evolving. ETB is burger centric in that we're not concerned with price, atmosphere, or service. It's all about the burger. We will however comment on the aforementioned if the restaurant delivers above and beyond. We prefer a "best of the best" short list as opposed to a lengthy list of options coupled with a complicated ranking system.</p>
-          <p>Established in 2010, eat this beef has cataloged <span>219</span> burgers in the DFW area to date. Fight us.</p>
+          <p>Established in 2010, eat this beef has cataloged <span>{ this.state.totalRestaurants - this.state.totalDestinationRestaruants }</span> burgers in the DFW area to date. Fight us.</p>
           <p>I'm Brian Parks and I love to eat burgers. I also love to make computers go beep boop beep. This is version three of eat this beef and it's been built from the ground up. It's utilizing the newest steamy hotness including but not limited to: the Wordpress REST API, react, next.js, express, SASS et al. It also renders on both the server and client side, such neat! Much SEO. You can check out the <a href="https://github.com/omgcyrilic/etb" target="blank">source code</a> if you're feelin' saucy.</p>
           <p>And now, a message about burgers:</p>
           <p>"BURGER. The mere mention of the word elicits a Pavlovian salivation from men and women the world over. An easily uttered two syllables used to define a food both beautiful in its pure minimalist pragmatism and fascinating in its immeasurable permutations.</p>

@@ -80,9 +80,19 @@ export const buildImageaArray = (post) => {
 export const getWowClass = (window) => {
   var wowClass = 'wow fadeInUp';
 
-  if(typeof window !== 'undefined') {
+  if (typeof window !== 'undefined') {
     wowClass = 'wow fadeInUp';
   }
 
   return wowClass;
+};
+
+export const getClosedClass = (closed) => {
+  var isClosed = '';
+
+  if (closed == '1') {
+    isClosed = 'closed';
+  }
+
+  return isClosed;
 };
