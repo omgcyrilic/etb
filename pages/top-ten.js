@@ -15,7 +15,7 @@ class TopTen extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().order('asc').orderby('menu_order').perPage(10).category(2).embed();
+    const posts = await api.posts().order('asc').orderby('menu_order').category(2).embed();
     return { posts };
   }
 
@@ -33,6 +33,12 @@ class TopTen extends React.PureComponent {
         live: true
       });
       window.wow.init();
+    }
+  }
+  
+  componentDidUpdate() {
+    if (typeof window !== 'undefined') {
+      window.wow.sync();
     }
   }
 
@@ -55,8 +61,8 @@ class TopTen extends React.PureComponent {
           <meta name="twitter:title" content={title} />
           <meta name="twitter:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
         </Head>
-        <h1>THE TOP TEN</h1>
-        <h3>The best of the best in Dallas Texas</h3>
+        <h1 className={'wow fadeInDown'}>THE TOP TEN</h1>
+        <h3 className={'wow fadeInDown'}>The best of the best in Dallas Texas</h3>
         {isOpen && (
           <Lightbox
             mainSrc={window.images[photoIndex].src}

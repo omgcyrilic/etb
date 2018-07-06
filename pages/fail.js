@@ -71,6 +71,7 @@ class Fail extends React.PureComponent {
       window.wow.init();
       $('.restaurant').addClass('wow fadeInUp');
       $('.nav').addClass('wow slideInDown');
+      $('h1, h3').addClass('wow fadeInDown');
     }
   }
 

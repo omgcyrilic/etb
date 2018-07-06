@@ -36,6 +36,7 @@ class About extends React.PureComponent {
       window.wow.init();
       $('.restaurant').addClass('wow fadeInUp');
       $('.nav').addClass('wow slideInDown');
+      $('h1').addClass('wow fadeInDown');
     }
   }
 
@@ -43,6 +44,12 @@ class About extends React.PureComponent {
     this.getTotalRestaurants();
     this.totalDestinationRestaruants();
   };
+
+  componentDidUpdate() {
+    if(typeof window !== 'undefined') {
+      window.wow.sync();
+    }
+  }
 
   render() {
     const title = 'Eat This Beef, bruh - About';
