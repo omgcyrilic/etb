@@ -99,7 +99,7 @@ class Home extends React.PureComponent {
           <meta name="twitter:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
         </Head>
         <section>
-          <img src={'/static/img/logo.png'} className={'logo wow fadeInDwon'} />
+          <img src={'/static/img/logo.png'} className={'logo wow fadeInDown'} />
           <img src={'/static/img/logo-stacked.png'} className={'logo stacked wow fadeInDown'} />
           <h1 className={'wow fadeInDown'}>WELCOME TO DFW'S UNDISPUTED MOST EPIC BURGER RANKING PUBLICATION OF ALL TIME</h1>
           <h4 className={'wow fadeInDown'}>BURGERS THAT JUST MET OUR BELLIES</h4>
