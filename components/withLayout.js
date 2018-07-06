@@ -69,7 +69,7 @@ const withLayout = (WrappedComponent) => {
         });
 
         collapseMenu();
-        $('body').attr('oncontextmenu', 'return false');
+        // $('body').attr('oncontextmenu', 'return false');
       });
       
       ReactGA.initialize('UA-3241810-3');

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import api from '../api';
 import withLayout from '../components/withLayout';
 import { buildImageaArray, getGoogleMapsUrl } from '/components/helpers';
-import $ from 'jquery';
 
 const Lightbox = dynamic(import('react-image-lightbox'));
 
@@ -27,15 +26,13 @@ class TopTen extends React.PureComponent {
   };  
 
   componentDidMount() {
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.WOW = require('wowjs');
 
       window.wow = new WOW.WOW({
         live: true
       });
       window.wow.init();
-      $('.restaurant').addClass('wow fadeInUp');
-      $('.nav').addClass('wow slideInDown');
     }
   }
 
@@ -83,7 +80,7 @@ class TopTen extends React.PureComponent {
         <section className={'restaurant-list'}>
           {
             posts.map(post => (
-              <section key={post.id} className={'restaurant '} data-wow-duration=".5s" data-wow-offset="10">
+              <section key={post.id} className={'restaurant wow fadeInUp'} data-wow-duration=".5s" data-wow-offset="10">
                 <Link
                   href={{
                     pathname: '/restaurant',
