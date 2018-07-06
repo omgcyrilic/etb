@@ -69,10 +69,6 @@ class Destination extends React.PureComponent {
         live: true
       });
       window.wow.init();
-      $('.restaurant').addClass('wow fadeInUp');
-      $('.nav').addClass('wow slideInDown');
-      $('.nav').addClass('wow slideInDown');
-      $('h1, h3').addClass('wow fadeInUp');
     }
   }
 
@@ -101,8 +97,8 @@ class Destination extends React.PureComponent {
           <meta name="twitter:title" content={title} />
           <meta name="twitter:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
         </Head>
-        <h1>Destination</h1>
-        <h3>The list broadens. Who doesn't love a good burger when you're on vacation? These are the burger joints outside of DFW worth checking out if you're in the area.</h3>
+        <h1 className={'wow fadeInDown'}>Destination</h1>
+        <h3 className={'wow fadeInDown'}>The list broadens. Who doesn't love a good burger when you're on vacation? These are the burger joints outside of DFW worth checking out if you're in the area.</h3>
         {isOpen && (
           <Lightbox
             mainSrc={window.images[photoIndex].src}
@@ -126,7 +122,7 @@ class Destination extends React.PureComponent {
         <section className={'restaurant-list'}>
           {
             posts.map(post => (
-              <section key={post.id} className={'restaurant ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
+              <section key={post.id} className={'restaurant wow fadeInUp' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
                 <Link
                   href={{
                     pathname: '/restaurant',

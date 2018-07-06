@@ -40,8 +40,6 @@ class Restaurant extends React.PureComponent {
         live: true
       });
       window.wow.init();
-      $('.restaurant').addClass('wow fadeInUp');
-      $('.nav').addClass('wow slideInDown');
     }
   }
 
@@ -89,7 +87,7 @@ class Restaurant extends React.PureComponent {
           />
         )}
         <section className={'restaurant-list'}>
-          <section key={post.id} className={'restaurant single ' + getClosedClass(post.closed)} data-wow-duration=".5s">
+          <section key={post.id} className={'restaurant single wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s">
             <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
             <div className={'address'}>
               <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
