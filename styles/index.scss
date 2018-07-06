@@ -278,6 +278,12 @@ footer {
           margin-top: 10px;
         }
       }
+      &:after {
+        content: url('/static/img/sad.png');
+        left: 83px;
+        position: absolute;
+        top: 17px;
+      }
       &:before {
         color: $tractor-red;
         font-weight: bold;
@@ -324,6 +330,7 @@ footer {
     }
     .img-thumb {
       border: none;
+      cursor: pointer;
       margin: 0;
       padding: 0;
       position: absolute;

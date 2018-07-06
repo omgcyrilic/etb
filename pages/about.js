@@ -2,6 +2,7 @@ import api from '../api';
 import React from 'react';
 import Head from 'next/head';
 import withLayout from '../components/withLayout';
+import $ from 'jquery';
 
 class About extends React.PureComponent {
   state = {
@@ -22,7 +23,6 @@ class About extends React.PureComponent {
       this.setState({
         totalDestinationRestaruants: response._paging.total
       });
-      console.log(response);
     });
   }
 
@@ -34,6 +34,8 @@ class About extends React.PureComponent {
         live: true
       });
       window.wow.init();
+      $('.restaurant').addClass('wow fadeInUp');
+      $('.nav').addClass('wow slideInDown');
     }
   }
 

@@ -19,32 +19,34 @@ export const dateDisplay = (dateString) => {
 };
 
 export const getCategoryTag = (category, rank) => {
-  var categoryId = parseInt(category[0]);
-  var rank = parseInt(rank[0]);
-
-  if (categoryId === 1 && rank > 0) {
-    if (rank <= 99) {
-      rank = ('0'+rank).slice(-2);
+  if (category != null && rank != null) {
+    var categoryId = parseInt(category[0]);
+    var rank = parseInt(rank[0]);
+  
+    if (categoryId === 1 && rank > 0) {
+      if (rank <= 99) {
+        rank = ('0'+rank).slice(-2);
+      }
+      return 'top-' + rank; 
     }
-    return 'top-' + rank; 
-  }
-  if (categoryId === 2) {
-    return 'hm';
-  }
-  if (categoryId === 3) {
-    return 'fail';
-  }
-  if (categoryId === 4) {
-    return 'placeholder';
-  }
-  else {
-    return 'error';
+    if (categoryId === 2) {
+      return 'hm';
+    }
+    if (categoryId === 3) {
+      return 'fail';
+    }
+    if (categoryId === 4) {
+      return 'placeholder';
+    }
+    else {
+      return 'error';
+    }
   }
 };
 
 export const getGoogleMapsUrl = (post) => {
   var url = '';
-  url = 'https://www.google.com/maps/place/' + post.addressstreet + '+' +  post.addresscity + '+' +  post.addressstate;
+  url = 'https://www.google.com/maps/place/' + post.addressstreet + '+' + post.addresscity + '+' + post.addressstate;
 
   return url;
 };

@@ -5,7 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import api from '../api';
 import withLayout from '../components/withLayout';
-import { buildImageaArray, getClosedClass, dateDisplay, getCategoryTag, getGoogleMapsUrl, getWowClass } from '/components/helpers';
+import { buildImageaArray, getClosedClass, dateDisplay, getCategoryTag, getGoogleMapsUrl } from '/components/helpers';
 
 const Lightbox = dynamic(import('react-image-lightbox'));
 
@@ -70,6 +70,8 @@ class Home extends React.PureComponent {
         live: false
       });
       window.wow.init();
+      $('.restaurant').addClass('wow fadeInUp');
+      $('.nav').addClass('wow slideInDown');
     }
   }
 
@@ -127,7 +129,7 @@ class Home extends React.PureComponent {
         <section className={'restaurant-list'}>
           {
             posts.map(post => (
-              <section key={post.id} className={'restaurant ' + getWowClass(this.window) + ' ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
+              <section key={post.id} className={'restaurant ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
                 <img src={'/static/img/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
                 <Link
                   href={{
@@ -146,7 +148,7 @@ class Home extends React.PureComponent {
                   <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
                 </div>
                 <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
-                  <img src={'/static/img/' +  post.imgthumb}/>
+                  <img src={'/static/img/' + post.imgthumb}/>
                 </button>
                 <div className={'copy'}>
                   <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                

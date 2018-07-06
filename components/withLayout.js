@@ -23,25 +23,34 @@ const withLayout = (WrappedComponent) => {
 
         $($hamburger).click(function() {
           if (isActive === false) {
-            isActive = true;
-            $hamburger.addClass('is-active');
-            $('html, body').animate({
-              scrollTop: 0
-            }, 0, function() {
-              $('html, body').addClass('blocked'),
-              $('aside').fadeIn('200', function() {
-                $('.menu').addClass('expanded');
-              });
-            }); 
+            expandMenu();
           }
           else {
-            isActive = false;
-            $hamburger.removeClass('is-active');
-            $('html, body').removeClass('blocked');
-            $('.menu').removeClass('expanded');
-            $('aside').fadeOut('200');
+            collapseMenu();
           }
         });
+
+        const expandMenu = () => {
+          isActive = true;
+          $hamburger.addClass('is-active');
+          $('html, body').animate({
+            scrollTop: 0
+          }, 0, function() {
+            $('html, body').addClass('blocked'),
+            $('aside').fadeIn('200', function() {
+              $('.menu').addClass('expanded');
+            });
+          }); 
+        };
+
+        const collapseMenu = () => {
+          isActive = false;
+          $hamburger.removeClass('is-active');
+          $('html, body').removeClass('blocked');
+          $('.menu').removeClass('expanded');
+          $('aside').fadeOut('200');
+        };
+
         var top = !1;
         $(document).scroll(function() {
           $(window).scrollTop() > 650 ? top || ($('nav').hide().stop().fadeIn(300).css({
@@ -59,10 +68,8 @@ const withLayout = (WrappedComponent) => {
           top = !1);
         });
 
-        $hamburger.removeClass('is-active');
-        $('html, body').removeClass('blocked');
-        $('.menu').removeClass('expanded');
-        $('aside').fadeOut('200');
+        collapseMenu();
+        $('body').attr('oncontextmenu', 'return false');
       });
       
       ReactGA.initialize('UA-3241810-3');
