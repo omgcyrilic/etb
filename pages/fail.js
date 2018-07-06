@@ -69,9 +69,6 @@ class Fail extends React.PureComponent {
         live: true
       });
       window.wow.init();
-      $('.restaurant').addClass('wow fadeInUp');
-      $('.nav').addClass('wow slideInDown');
-      $('h1, h3').addClass('wow fadeInDown');
     }
   }
 
@@ -100,8 +97,8 @@ class Fail extends React.PureComponent {
           <meta name="twitter:title" content={title} />
           <meta name="twitter:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
         </Head>
-        <h1>Fail</h1>
-        <h3>The list disappoints. These are the burgers to avoid. You don't want to waste cash and calories here. Take our word for it and hit a place on the <Link href="/top-ten"><a>top ten</a></Link> instead. Or don't, do whatever the fuck you want. Maybe they changed chefs or something right?</h3>
+        <h1 className={'wow fadeInDown'}>Fail</h1>
+        <h3 className={'wow fadeInDown'}>The list disappoints. These are the burgers to avoid. You don't want to waste cash and calories here. Take our word for it and hit a place on the <Link href="/top-ten"><a>top ten</a></Link> instead. Or don't, do whatever the fuck you want. Maybe they changed chefs or something right?</h3>
         {isOpen && (
           <Lightbox
             mainSrc={window.images[photoIndex].src}
@@ -125,7 +122,7 @@ class Fail extends React.PureComponent {
         <section className={'restaurant-list'}>
           {
             posts.map(post => (
-              <section key={post.id} className={'restaurant ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
+              <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
                 <Link
                   href={{
                     pathname: '/restaurant',

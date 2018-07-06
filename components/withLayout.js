@@ -8,6 +8,8 @@ import Favicon from 'react-favicon';
 import stylesheet from 'styles/index.scss';
 import $ from 'jquery';
 
+const isServer = typeof window === 'undefined';
+
 Router.onRouteChangeStart = () => {
   NProgress.start();
 };
@@ -69,6 +71,7 @@ const withLayout = (WrappedComponent) => {
         });
 
         collapseMenu();
+        // TODO: fix this
         // $('body').attr('oncontextmenu', 'return false');
       });
       
@@ -85,6 +88,11 @@ const withLayout = (WrappedComponent) => {
 
     render() {
       const { props } = this;
+      let wowClass;
+      if (!isServer) {
+        /* eslint-disable quotes */
+        wowClass = <style jsx global>{` .wow { visibility: hidden } `}</style>;
+      }
 
       return (
         <div>
@@ -98,6 +106,7 @@ const withLayout = (WrappedComponent) => {
             <meta property="og:site_name" content="Eat This Beef!" />
             <meta property="og:description" content="DFW's most epic burger ranking publication of all time.  Feed your life-long burger quest in Dallas, TX." />
           </Head>
+          { wowClass }
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
           <aside>
             <div className={'menu'}>

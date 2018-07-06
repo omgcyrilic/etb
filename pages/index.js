@@ -70,8 +70,6 @@ class Home extends React.PureComponent {
         live: false
       });
       window.wow.init();
-      $('.restaurant').addClass('wow fadeInUp');
-      $('.nav').addClass('wow slideInDown');
     }
   }
 
@@ -101,10 +99,10 @@ class Home extends React.PureComponent {
           <meta name="twitter:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
         </Head>
         <section>
-          <img src={'/static/img/logo.png'} className={'logo'} />
-          <img src={'/static/img/logo-stacked.png'} className={'logo stacked'} />
-          <h1>WELCOME TO DFW'S UNDISPUTED MOST EPIC BURGER RANKING PUBLICATION OF ALL TIME</h1>
-          <h4>BURGERS THAT JUST MET OUR BELLIES</h4>
+          <img src={'/static/img/logo.png'} className={'logo wow fadeInDwon'} />
+          <img src={'/static/img/logo-stacked.png'} className={'logo stacked wow fadeInDown'} />
+          <h1 className={'wow fadeInDown'}>WELCOME TO DFW'S UNDISPUTED MOST EPIC BURGER RANKING PUBLICATION OF ALL TIME</h1>
+          <h4 className={'wow fadeInDown'}>BURGERS THAT JUST MET OUR BELLIES</h4>
         </section>
         {isOpen && (
           <Lightbox
@@ -129,7 +127,7 @@ class Home extends React.PureComponent {
         <section className={'restaurant-list'}>
           {
             posts.map(post => (
-              <section key={post.id} className={'restaurant ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
+              <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
                 <img src={'/static/img/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
                 <Link
                   href={{

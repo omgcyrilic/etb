@@ -69,9 +69,6 @@ class HoorableMention extends React.PureComponent {
         live: true
       });
       window.wow.init();
-      $('.restaurant').addClass('wow fadeInUp');
-      $('.nav').addClass('wow slideInDown');
-      $('h1, h3').addClass('wow fadeInDown');
     }
   }
 
@@ -100,8 +97,8 @@ class HoorableMention extends React.PureComponent {
           <meta name="twitter:title" content={title} />
           <meta name="twitter:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
         </Head>
-        <h1>Honorable Mention</h1>
-        <h3>The list continues. These burgers are fantastic and we'd love to return for another burgering sesh, but unfortunately we couldn't squeeze them into the top ten, because you know, there are only ten slots, and there are so many burgers in the Dallas burger-sphere. We want them all to be in the top ten, but god damnit we have to show some restraint. </h3>
+        <h1 className={'wow fadeInDown'}>Honorable Mention</h1>
+        <h3 className={'wow fadeInDown'}>The list continues. These burgers are fantastic and we'd love to return for another burgering sesh, but unfortunately we couldn't squeeze them into the top ten, because you know, there are only ten slots, and there are so many burgers in the Dallas burger-sphere. We want them all to be in the top ten, but god damnit we have to show some restraint. </h3>
         {isOpen && (
           <Lightbox
             mainSrc={window.images[photoIndex].src}
@@ -125,7 +122,7 @@ class HoorableMention extends React.PureComponent {
         <section className={'restaurant-list'}>
           {
             posts.map(post => (
-              <section key={post.id} className={'restaurant ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
+              <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
                 <Link
                   href={{
                     pathname: '/restaurant',
