@@ -4,8 +4,8 @@ A personal project showcasing the best burgers in Dallas Texas written with reac
 
 ### features
 
-- Server side and client side rendering
-- Renders with javascript disabled (yay SEO!)
+- server side and client side rendering
+- renders with javascript disabled (yay SEO!)
 - lazy loading
 - magic
 
@@ -25,4 +25,4 @@ yarn prod
 
 MIT
 
-_free software, fuck yeah!_
+*free software, fuck yeah!*
