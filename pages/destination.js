@@ -93,9 +93,9 @@ class Destination extends React.PureComponent {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
+          <meta property="og:image" content={'https://eatthisbeef.com/static/img/' + posts.map(post => (post.img))[0]} />
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'/static/img/' + posts.map(post => (post.img))[0]} />
+          <meta name="twitter:image" content={'https://eatthisbeef.com/static/img/' + posts.map(post => (post.img))[0]} />
         </Head>
         <h1 className={'wow fadeInDown'}>Destination</h1>
         <h3 className={'wow fadeInDown'}>The list broadens. Who doesn't love a good burger when you're on vacation? These are the burger joints outside of DFW worth checking out if you're in the area.</h3>
@@ -122,7 +122,7 @@ class Destination extends React.PureComponent {
         <section className={'restaurant-list'}>
           {
             posts.map(post => (
-              <section key={post.id} className={'restaurant wow fadeInUp' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
+              <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
                 <Link
                   href={{
                     pathname: '/restaurant',
