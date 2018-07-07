@@ -9,11 +9,16 @@ A personal project showcasing the best burgers in Dallas Texas written with reac
 - lazy loading
 - magic
 
-### installation
+### setup
 
 ```bash
 yarn
 yarn dev
+```
+
+for production:
+```bash
+yarn prod
 ```
 
 ### license
