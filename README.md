@@ -25,4 +25,4 @@ yarn prod
 
 MIT
 
-*free software, fuck yeah!*
+**free software, fuck yeah!**
