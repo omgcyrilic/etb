@@ -18,6 +18,7 @@ yarn dev
 
 for production:
 ```bash
+yarn build
 yarn prod
 ```
 
