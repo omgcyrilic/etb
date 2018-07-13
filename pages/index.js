@@ -7,6 +7,7 @@ import api from '../api';
 import withLayout from '../components/withLayout';
 import { buildImageaArray, getClosedClass, dateDisplay, getCategoryTag, getGoogleMapsUrl } from '/components/helpers';
 
+const isServer = typeof window === 'undefined';
 const Lightbox = dynamic(import('react-image-lightbox'));
 
 class Home extends React.PureComponent {
@@ -41,9 +42,9 @@ class Home extends React.PureComponent {
       this.setState({ hasMore: false });
     }
     this.setState({
-      loading: false
+      loading: fase
     });
-    if (typeof window !== 'undefined') {
+    if (!isServer) {
       window.wow.sync();
     }
   }
@@ -64,7 +65,7 @@ class Home extends React.PureComponent {
   };
 
   componentDidMount() {
-    if (typeof window !== 'undefined') {
+    if (!isServer) {
       window.WOW = require('wowjs');
       window.wow = new WOW.WOW({
         live: false
@@ -74,7 +75,7 @@ class Home extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    if (typeof window !== 'undefined') {
+    if (!isServer) {
       window.wow.sync();
     }
   }

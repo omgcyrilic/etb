@@ -82,7 +82,7 @@ export const buildImageaArray = (post) => {
 export const getWowClass = (window) => {
   var wowClass = 'wow fadeInUp';
 
-  if (typeof window !== 'undefined') {
+  if (!isServer) {
     wowClass = 'wow fadeInUp';
   }
 
