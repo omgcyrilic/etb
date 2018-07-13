@@ -91,7 +91,7 @@ const withLayout = (WrappedComponent) => {
       let wowClass;
       if (!isServer) {
         /* eslint-disable quotes */
-        wowClass = <style jsx global>{` .wow { visibility: hidden } `}</style>;
+        wowClass = <style jsx global>{` .restaurant.wow { visibility: hidden } `}</style>;
       }
 
       return (
