@@ -2,7 +2,8 @@ import api from '../api';
 import React from 'react';
 import Head from 'next/head';
 import withLayout from '../components/withLayout';
-import $ from 'jquery';
+
+let isServer = typeof window === 'undefined';
 
 class About extends React.PureComponent {
   state = {
@@ -27,7 +28,7 @@ class About extends React.PureComponent {
   }
 
   componentDidMount() {
-    if (typeof window !== 'undefined') {
+    if (!isServer) {
       window.WOW = require('wowjs');
 
       window.wow = new WOW.WOW({
@@ -43,7 +44,7 @@ class About extends React.PureComponent {
   };
 
   componentDidUpdate() {
-    if(typeof window !== 'undefined') {
+    if(!isServer) {
       window.wow.sync();
     }
   }

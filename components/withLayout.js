@@ -8,7 +8,7 @@ import Favicon from 'react-favicon';
 import stylesheet from 'styles/index.scss';
 import $ from 'jquery';
 
-const isServer = typeof window === 'undefined';
+let isServer = typeof window === 'undefined';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();

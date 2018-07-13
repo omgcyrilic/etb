@@ -6,8 +6,8 @@ import Link from 'next/link';
 import api from '../api';
 import withLayout from '../components/withLayout';
 import { buildImageaArray, getClosedClass, getGoogleMapsUrl } from '/components/helpers';
-import $ from 'jquery';
 
+let isServer = typeof window === 'undefined';
 const Lightbox = dynamic(import('react-image-lightbox'));
 
 class HoorableMention extends React.PureComponent {
@@ -62,7 +62,7 @@ class HoorableMention extends React.PureComponent {
   };
   
   componentDidMount() {
-    if(typeof window !== 'undefined') {
+    if(!isServer) {
       window.WOW = require('wowjs');
 
       window.wow = new WOW.WOW({
@@ -73,7 +73,7 @@ class HoorableMention extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    if(typeof window !== 'undefined') {
+    if(!isServer) {
       window.wow.sync();
     }
   }

@@ -6,6 +6,7 @@ import api from '../api';
 import withLayout from '../components/withLayout';
 import { buildImageaArray, getGoogleMapsUrl } from '/components/helpers';
 
+let isServer = typeof window === 'undefined';
 const Lightbox = dynamic(import('react-image-lightbox'));
 
 class TopTen extends React.PureComponent {
@@ -26,7 +27,7 @@ class TopTen extends React.PureComponent {
   };  
 
   componentDidMount() {
-    if (typeof window !== 'undefined') {
+    if (!isServer) {
       window.WOW = require('wowjs');
 
       window.wow = new WOW.WOW({
@@ -37,7 +38,7 @@ class TopTen extends React.PureComponent {
   }
   
   componentDidUpdate() {
-    if (typeof window !== 'undefined') {
+    if (!isServer) {
       window.wow.sync();
     }
   }

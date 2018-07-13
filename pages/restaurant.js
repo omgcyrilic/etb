@@ -4,8 +4,8 @@ import Head from 'next/head';
 import api from '../api';
 import withLayout from '../components/withLayout';
 import { buildImageaArray, getClosedClass, getGoogleMapsUrl } from '/components/helpers';
-import $ from 'jquery';
 
+let isServer = typeof window === 'undefined';
 const Lightbox = dynamic(import('react-image-lightbox'));
 
 class Restaurant extends React.PureComponent {
@@ -33,7 +33,7 @@ class Restaurant extends React.PureComponent {
   };
 
   componentDidMount() {
-    if(typeof window !== 'undefined') {
+    if(!isServer) {
       window.WOW = require('wowjs');
 
       window.wow = new WOW.WOW({
