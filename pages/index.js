@@ -42,7 +42,7 @@ class Home extends React.PureComponent {
       this.setState({ hasMore: false });
     }
     this.setState({
-      loading: fase
+      loading: false
     });
     if (!isServer) {
       window.wow.sync();
