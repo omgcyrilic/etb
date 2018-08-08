@@ -140,6 +140,7 @@ class Destination extends React.PureComponent {
                   <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
                 </div>
                 <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
+                  <img src={'/static/img/zoom.png'} className={'zoom'} />
                   <img src={'/static/img/' + post.imgthumb}/>
                 </button>
                 <div className={'copy'}>
