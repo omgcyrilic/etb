@@ -21,7 +21,7 @@ class Destination extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().order('asc').orderby('title').perPage(10).category(5);
+    const posts = await api.posts().order('asc').orderby('title').perPage(20).category(5);
     return { posts };
   }
 

@@ -21,7 +21,7 @@ class Fail extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().order('asc').orderby('title').perPage(10).category(4);
+    const posts = await api.posts().order('asc').orderby('title').perPage(20).category(4);
     return { posts };
   }
 
