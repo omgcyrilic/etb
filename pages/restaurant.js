@@ -88,6 +88,7 @@ class Restaurant extends React.PureComponent {
         )}
         <section className={'restaurant-list'}>
           <section key={post.id} className={'restaurant single wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s">
+            <img src={'/static/img/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
             <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
             <div className={'address'}>
               <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
