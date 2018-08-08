@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import api from '../api';
 import withLayout from '../components/withLayout';
-import { buildImageaArray, getClosedClass, getGoogleMapsUrl } from '/components/helpers';
+import { buildImageaArray, getCategoryTag, getClosedClass, getGoogleMapsUrl } from '/components/helpers';
 
 let isServer = typeof window === 'undefined';
 const Lightbox = dynamic(import('react-image-lightbox'));
