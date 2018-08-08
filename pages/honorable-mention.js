@@ -21,7 +21,7 @@ class HoorableMention extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().order('asc').orderby('title').perPage(10).category(3);
+    const posts = await api.posts().order('asc').orderby('title').perPage(20).category(3);
     return { posts };
   }
 

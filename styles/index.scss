@@ -338,6 +338,11 @@ footer {
       img {
         max-width: 100px;
       }
+      .zoom {
+        position: absolute;
+        right: 3px;
+        top: 3px;
+      }
     }
     .placeholder {
       float: left;

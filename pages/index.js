@@ -21,7 +21,7 @@ class Home extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().perPage(10).page(1).order('desc').orderby('date');
+    const posts = await api.posts().perPage(20).page(1).order('desc').orderby('date');
     return { posts };
   }
 
@@ -147,7 +147,8 @@ class Home extends React.PureComponent {
                   <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
                 </div>
                 <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
-                  <img src={'/static/img/' + post.imgthumb}/>
+                  <img src={'/static/img/zoom.png'} className={'zoom'} />
+                  <img src={'/static/img/' + post.imgthumb} />
                 </button>
                 <div className={'copy'}>
                   <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                
