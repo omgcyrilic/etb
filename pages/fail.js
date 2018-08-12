@@ -93,9 +93,9 @@ class Fail extends React.PureComponent {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'https://eatthisbeef.com/static/img/' + posts.map(post => (post.img))[0]} />
+          <meta property="og:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'https://eatthisbeef.com/static/img/' + posts.map(post => (post.img))[0]} />
+          <meta name="twitter:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
         </Head>
         <h1 className={'wow fadeInDown'}>Fail</h1>
         <h3 className={'wow fadeInDown'}>The list disappoints. These are the burgers to avoid. You don't want to waste cash and calories here. Take our word for it and hit a place on the <Link href="/top-ten"><a>top ten</a></Link> instead. Or don't, do whatever the fuck you want. Maybe they changed chefs or something right?</h3>
@@ -140,8 +140,8 @@ class Fail extends React.PureComponent {
                   <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
                 </div>
                 <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
-                  <img src={'/static/img/zoom.png'} className={'zoom'} />
-                  <img src={'/static/img/' + post.imgthumb}/>
+                  <img src={'https://images.eatthisbeef.com/zoom.png'} className={'zoom'} />
+                  <img src={'https://images.eatthisbeef.com/' + post.imgthumb}/>
                 </button>
                 <div className={'copy'}>
                   <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                
@@ -151,7 +151,7 @@ class Fail extends React.PureComponent {
           }
         </section>
         {this.state.page < this.state.totalPages && this.state.hasMore && <Waypoint key={this.state.page} onEnter={this.loadMore} />}
-        {this.state.page < this.state.totalPages && this.state.loading && <div className={'loading-more'}><img src={'/static/img/logo-burger.png'} /></div>}
+        {this.state.page < this.state.totalPages && this.state.loading && <div className={'loading-more'}><img src={'https://images.eatthisbeef.com/logo-burger.png'} /></div>}
       </div>
     );
   }

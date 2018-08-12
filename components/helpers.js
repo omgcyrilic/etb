@@ -57,19 +57,19 @@ export const buildImageaArray = (post) => {
   if (typeof post !== 'undefined') {
     if (typeof post.img !== 'undefined') {
       images.push({
-        'src': '/static/img/' + post.img,
+        'src': 'https://images.eatthisbeef.com/' + post.img,
         'title': post.restaurant
       });
     }
     if (typeof post.imgbonus !== 'undefined') {
       images.push({
-        'src': '/static/img/' + post.imgbonus,
+        'src': 'https://images.eatthisbeef.com/' + post.imgbonus,
         'title': post.restaurant
       });
     }
     if (typeof post.imgexterior !== 'undefined') {
       images.push({
-        'src': '/static/img/' + post.imgexterior,
+        'src': 'https://images.eatthisbeef.com/' + post.imgexterior,
         'title': post.restaurant
       });
     }

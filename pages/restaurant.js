@@ -58,13 +58,13 @@ class Restaurant extends React.PureComponent {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'https://eatthisbeef.com/static/img/' + post.img} />
+          <meta property="og:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + post.img} />
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'https://eatthisbeef.com/static/img/' + post.img} />
+          <meta name="twitter:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + post.img} />
         </Head>
         <section>
-          <img src={'/static/img/logo.png'} className={'logo'} />
-          <img src={'/static/img/logo-stacked.png'} className={'logo stacked'} />
+          <img src={'https://images.eatthisbeef.com/logo.png'} className={'logo'} />
+          <img src={'https://images.eatthisbeef.com/logo-stacked.png'} className={'logo stacked'} />
         </section>
         {isOpen && (
           <Lightbox
@@ -88,14 +88,14 @@ class Restaurant extends React.PureComponent {
         )}
         <section className={'restaurant-list'}>
           <section key={post.id} className={'restaurant single wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s">
-            <img src={'/static/img/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
+            <img src={'https://images.eatthisbeef.com/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
             <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
             <div className={'address'}>
               <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
             </div>
             <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
-              <img src={'/static/img/zoom.png'} className={'zoom'} />
-              <img src={'/static/img/' + post.imgthumb}/>
+              <img src={'https://images.eatthisbeef.com/zoom.png'} className={'zoom'} />
+              <img src={'https://images.eatthisbeef.com/' + post.imgthumb}/>
             </button>
             <div className={'copy'}>
               <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                

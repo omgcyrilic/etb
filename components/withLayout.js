@@ -96,7 +96,7 @@ const withLayout = (WrappedComponent) => {
 
       return (
         <div>
-          <Favicon url="/static/img/faveico.png" />
+          <Favicon url="https://images.eatthisbeef.com/faveico.png" />
           <Head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
             <meta name="description" content="DFW's most epic burger ranking publication of all time.  Feed your life-long burger quest in Dallas, TX." />

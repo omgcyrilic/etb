@@ -58,9 +58,9 @@ class TopTen extends React.PureComponent {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'https://eatthisbeef.com/static/img/' + posts.map(post => (post.img))[0]} />
+          <meta property="og:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'https://eatthisbeef.com/static/img/' + posts.map(post => (post.img))[0]} />
+          <meta name="twitter:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
         </Head>
         <h1 className={'wow fadeInDown'}>THE TOP TEN</h1>
         <h3 className={'wow fadeInDown'}>The best of the best in Dallas Texas</h3>
@@ -105,8 +105,8 @@ class TopTen extends React.PureComponent {
                   <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
                 </div>
                 <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
-                  <img src={'/static/img/zoom.png'} className={'zoom'} />
-                  <img src={'/static/img/' + post.imgthumb}/>
+                  <img src={'https://images.eatthisbeef.com/zoom.png'} className={'zoom'} />
+                  <img src={'https://images.eatthisbeef.com/' + post.imgthumb}/>
                 </button>
                 <div className={'copy'}>
                   <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                

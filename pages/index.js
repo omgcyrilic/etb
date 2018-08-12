@@ -95,13 +95,13 @@ class Home extends React.PureComponent {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'https://eatthisbeef.com/static/img/' + posts.map(post => (post.img))[0]} />
+          <meta property="og:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'https://eatthisbeef.com/static/img/' + posts.map(post => (post.img))[0]} />
+          <meta name="twitter:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
         </Head>
         <section>
-          <img src={'/static/img/logo.png'} className={'logo wow fadeInDown'} />
-          <img src={'/static/img/logo-stacked.png'} className={'logo stacked wow fadeInDown'} />
+          <img src={'https://images.eatthisbeef.com/logo.png'} className={'logo wow fadeInDown'} />
+          <img src={'https://images.eatthisbeef.com/logo-stacked.png'} className={'logo stacked wow fadeInDown'} />
           <h1 className={'wow fadeInDown'}>WELCOME TO DFW'S UNDISPUTED MOST EPIC BURGER RANKING PUBLICATION OF ALL TIME</h1>
           <h4 className={'wow fadeInDown'}>BURGERS THAT JUST MET OUR BELLIES</h4>
         </section>
@@ -129,7 +129,7 @@ class Home extends React.PureComponent {
           {
             posts.map(post => (
               <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
-                <img src={'/static/img/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
+                <img src={'https://images.eatthisbeef.com/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
                 <Link
                   href={{
                     pathname: '/restaurant',
@@ -147,8 +147,8 @@ class Home extends React.PureComponent {
                   <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
                 </div>
                 <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
-                  <img src={'/static/img/zoom.png'} className={'zoom'} />
-                  <img src={'/static/img/' + post.imgthumb} />
+                  <img src={'https://images.eatthisbeef.com/zoom.png'} className={'zoom'} />
+                  <img src={'https://images.eatthisbeef.com/' + post.imgthumb} />
                 </button>
                 <div className={'copy'}>
                   <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                
@@ -159,7 +159,7 @@ class Home extends React.PureComponent {
           }
         </section>
         {this.state.page < this.state.totalPages && this.state.hasMore && <Waypoint key={this.state.page} onEnter={this.loadMore} />}
-        {this.state.page < this.state.totalPages && this.state.loading && <div className={'loading-more'}><img src={'/static/img/logo-burger.png'} /></div>}
+        {this.state.page < this.state.totalPages && this.state.loading && <div className={'loading-more'}><img src={'https://images.eatthisbeef.com/logo-burger.png'} /></div>}
       </section>
     );
   }
