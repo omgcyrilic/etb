@@ -93,9 +93,9 @@ class HoorableMention extends React.PureComponent {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
+          <meta property="og:image" content={'https://eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
+          <meta name="twitter:image" content={'https://eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
         </Head>
         <h1 className={'wow fadeInDown'}>Honorable Mention</h1>
         <h3 className={'wow fadeInDown'}>The list continues. These burgers are fantastic and we'd love to return for another burgering sesh, but unfortunately we couldn't squeeze them into the top ten, because you know, there are only ten slots, and there are so many burgers in the Dallas burger-sphere. We want them all to be in the top ten, but god damnit we have to show some restraint. </h3>

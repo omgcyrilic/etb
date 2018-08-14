@@ -58,9 +58,9 @@ class Restaurant extends React.PureComponent {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + post.img} />
+          <meta property="og:image" content={'https://eatthisbeef.com/' + post.img} />
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + post.img} />
+          <meta name="twitter:image" content={'https://eatthisbeef.com/' + post.img} />
         </Head>
         <section>
           <img src={'https://images.eatthisbeef.com/logo.png'} className={'logo'} />

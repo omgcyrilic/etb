@@ -58,9 +58,9 @@ class TopTen extends React.PureComponent {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
+          <meta property="og:image" content={'https://eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'https://eatthisbeef.comhttps://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
+          <meta name="twitter:image" content={'https://eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
         </Head>
         <h1 className={'wow fadeInDown'}>THE TOP TEN</h1>
         <h3 className={'wow fadeInDown'}>The best of the best in Dallas Texas</h3>
