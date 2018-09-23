@@ -36,7 +36,7 @@ export const getCategoryTag = (category, rank) => {
       return 'fail';
     }
     if (categoryId === 4) {
-      return 'placeholder';
+      return 'none';
     }
     else {
       return 'error';
