@@ -6,7 +6,7 @@ import api from '../api';
 import withLayout from '../components/withLayout';
 import { DebounceInput } from 'react-debounce-input';
 import { buildImageaArray, getGoogleMapsUrl } from '/components/helpers';
-
+import $ from 'jquery';
 
 let isServer = typeof window === 'undefined';
 const Lightbox = dynamic(import('react-image-lightbox'));
@@ -49,6 +49,14 @@ class Search extends React.PureComponent {
       });
       window.wow.init();
     }
+    $(document).ready(function () {
+      $('.search-input').on('keypress', function(event) {
+        if (event.keyCode == 13) {
+          event.preventDefault();
+          event.target.blur();
+        }
+      });
+    });
   }
   
   componentDidUpdate() {
@@ -70,7 +78,6 @@ class Search extends React.PureComponent {
     if (this.state.searchTerm.length > 0) {
       this.updatePosts();
     }
-    console.log(this.state.searchTerm);
   }
 
   render() {
@@ -110,7 +117,7 @@ class Search extends React.PureComponent {
         )}
         <section className="search">
           <DebounceInput
-            className='wow fadeInUp'
+            className='search-input wow fadeInUp'
             debounceTimeout={300}
             name='etb-input'
             minLength={2}
