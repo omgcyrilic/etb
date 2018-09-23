@@ -28,6 +28,7 @@
     "postcss-loader": "^2.1.5",
     "raw-loader": "^0.5.1",
     "react": "^16.4.1",
+    "react-debounce-input": "^3.2.0",
     "react-dom": "^16.4.1",
     "react-favicon": "^0.0.14",
     "react-ga": "^2.5.3",

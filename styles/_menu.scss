@@ -136,7 +136,7 @@ aside {
     box-sizing: border-box;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: center
+    justify-content: center;
   }
   .menu__item {
     border-bottom: none;
@@ -223,6 +223,25 @@ aside {
       position: absolute;
       right: 0;
       top: 5px;
+    }
+  }
+  .search {
+    border-bottom: 0;
+    left: 20px;
+    position: absolute;
+    top: 23px;
+    z-index: 2;
+  }
+  .pinned-search {
+    display: none;
+    left: -3px;
+    margin: 0;
+    position: absolute;
+    top: 21px;
+    width: 51%;
+    z-index: 1;
+    &.active{
+      display: block;
     }
   }
 }

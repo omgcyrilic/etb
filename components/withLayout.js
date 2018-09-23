@@ -115,6 +115,7 @@ const withLayout = (WrappedComponent) => {
               <Link href="/honorable-mention"><a className={'menu__item'}>Honorable Mention</a></Link>
               <Link href="/fail"><a className={'menu__item'}>Fail</a></Link>
               <Link href="/destination"><a className={'menu__item'}>Destination</a></Link>
+              <Link href="/search"><a className={'menu__item'}>Search</a></Link>
               <Link href="/about"><a className={'menu__item'}>About</a></Link>
             </div>
           </aside>
@@ -125,6 +126,7 @@ const withLayout = (WrappedComponent) => {
                   <span className={'hamburger-inner'}></span>
                 </span>
               </button>
+              <Link href="/search"><a className={'search'}><img src="https://images.eatthisbeef.com/search-menu.png" /></a></Link>
             </div>
           </nav>
           <main>
