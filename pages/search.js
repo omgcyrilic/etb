@@ -79,7 +79,10 @@ class Search extends React.PureComponent {
     if (noResults) {
       let top = noResults.offset().top - 20;
       if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
-        $('body').animate({ scrollTop: top });
+        // $('body').animate({ scrollTop: top });
+        window.setTimeout(function() {
+          $('body').animate({ scrollTop: top});
+        }, 0);
       } else {
         $('html, body').animate({ scrollTop: top });
       }
@@ -87,7 +90,10 @@ class Search extends React.PureComponent {
     else if (restaurantList) {
       let top = restaurantList.offset().top - 36;
       if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
-        $('body').animate({ scrollTop: top});
+        //$('body').animate({ scrollTop: top});
+        window.setTimeout(function() {
+          $('body').animate({ scrollTop: top});
+        }, 0);
       } else {
         $('html, body').animate({ scrollTop: top});
       }
