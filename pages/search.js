@@ -78,10 +78,10 @@ class Search extends React.PureComponent {
     let restaurantList = results.find('.restaurant-list');
     if (noResults) {
       let top = noResults.offset().top;
-      $('html, body').animate({ scrollTop: top });
+      $('html, body').animate({ scrollTop: top - 20 });
     }
     else if (restaurantList) {
-      let top = restaurantList.offset().top;
+      let top = restaurantList.offset().top - 36;
       $('html, body').animate({ scrollTop: top });
     }
   }
