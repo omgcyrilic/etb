@@ -9,6 +9,7 @@ import { buildImageaArray, getGoogleMapsUrl } from '/components/helpers';
 import $ from 'jquery';
 
 let results = null;
+let resultsNode = null;
 let isServer = typeof window === 'undefined';
 const Lightbox = dynamic(import('react-image-lightbox'));
 
@@ -50,6 +51,7 @@ class Search extends React.PureComponent {
   componentDidMount() {
     const node = this.myRef.current;
     results = $(node);
+    resultsNode = node;
 
     if (!isServer) {
       window.WOW = require('wowjs');
@@ -77,12 +79,7 @@ class Search extends React.PureComponent {
     let noResults = results.find('.no-results');
     let restaurantList = results.find('.restaurant-list');
     if (noResults) {
-      let top = noResults.offset().top;
-      if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
-        window.scrollTo(0, top);
-      } else {
-        $('html, body').animate({ scrollTop: top - 20 });
-      }
+      resultsNode.scrollIntoView();
     }
     else if (restaurantList) {
       let top = restaurantList.offset().top - 36;
