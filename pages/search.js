@@ -78,7 +78,7 @@ class Search extends React.PureComponent {
     let restaurantList = results.find('.restaurant-list');
     if (noResults) {
       let top = noResults.offset().top - 20;
-      if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
+      if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {
         window.setTimeout(function() {
           $('html, body').animate({ scrollTop: top });
         }, 0);
@@ -89,9 +89,8 @@ class Search extends React.PureComponent {
     else if (restaurantList) {
       let top = restaurantList.offset().top - 36;
       if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
-        //$('body').animate({ scrollTop: top});
         window.setTimeout(function() {
-          $('body').animate({ scrollTop: top});
+          $('html, body').animate({ scrollTop: top });
         }, 0);
       } else {
         $('html, body').animate({ scrollTop: top});
