@@ -77,12 +77,20 @@ class Search extends React.PureComponent {
     let noResults = results.find('.no-results');
     let restaurantList = results.find('.restaurant-list');
     if (noResults) {
-      let top = noResults.offset().top;
-      $('html, body').animate({ scrollTop: top - 20 });
+      let top = noResults.offset().top - 20;
+      if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
+        $('body').animate({ scrollTop: top});
+      } else {
+        $('html, body').animate({ scrollTop: top});
+      }
     }
     else if (restaurantList) {
       let top = restaurantList.offset().top - 36;
-      $('html, body').animate({ scrollTop: top });
+      if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
+        $('body').animate({ scrollTop: top});
+      } else {
+        $('html, body').animate({ scrollTop: top});
+      }
     }
   }
 
