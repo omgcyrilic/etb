@@ -8,10 +8,17 @@ import { DebounceInput } from 'react-debounce-input';
 import { buildImageaArray, getGoogleMapsUrl } from '/components/helpers';
 import $ from 'jquery';
 
+let results = null;
 let isServer = typeof window === 'undefined';
 const Lightbox = dynamic(import('react-image-lightbox'));
 
+
 class Search extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+
   state = {
     photoIndex: 0,
     isOpen: false,
@@ -41,6 +48,9 @@ class Search extends React.PureComponent {
   };  
 
   componentDidMount() {
+    const node = this.myRef.current;
+    results = $(node);
+
     if (!isServer) {
       window.WOW = require('wowjs');
 
@@ -49,14 +59,6 @@ class Search extends React.PureComponent {
       });
       window.wow.init();
     }
-    $(document).ready(function () {
-      $('.search-input').on('keypress', function(event) {
-        if (event.keyCode == 13) {
-          event.preventDefault();
-          event.target.blur();
-        }
-      });
-    });
   }
   
   componentDidUpdate() {
@@ -71,12 +73,26 @@ class Search extends React.PureComponent {
     this.setState({ isOpen: true });
   }
 
+  scrollTo = () => {
+    let noResults = results.find('.no-results');
+    let restaurantList = results.find('.restaurant-list');
+    if (noResults) {
+      let top = noResults.offset().top;
+      $('html, body').animate({ scrollTop: top });
+    }
+    else if (restaurantList) {
+      let top = restaurantList.offset().top;
+      $('html, body').animate({ scrollTop: top });
+    }
+  }
+
   handleEvent = (event) => {
     this.setState({
       searchTerm: event.target.value
     });
     if (this.state.searchTerm.length > 0) {
       this.updatePosts();
+      this.scrollTo();
     }
   }
 
@@ -85,7 +101,7 @@ class Search extends React.PureComponent {
     const title = 'Eat This Beef, bruh - Search';
 
     return (
-      <div className="search-page">
+      <div className="search-page" ref={this.myRef}>
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
