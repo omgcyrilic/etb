@@ -77,11 +77,11 @@ class Search extends React.PureComponent {
     let noResults = results.find('.no-results');
     let restaurantList = results.find('.restaurant-list');
     if (noResults) {
-      let top = noResults.offset().top - 20;
+      let top = noResults.offset().top;
       if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
-        window.scrollTo(0, top); 
+        window.scrollTo(0, top);
       } else {
-        $('html, body').animate({ scrollTop: top});
+        $('html, body').animate({ scrollTop: top - 20 });
       }
     }
     else if (restaurantList) {
@@ -89,7 +89,7 @@ class Search extends React.PureComponent {
       if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
         window.scrollTo(0, top);
       } else {
-        $('html, body').animate({ scrollTop: top});
+        $('html, body').animate({ scrollTop: top - 20 });
       }
     }
   }
