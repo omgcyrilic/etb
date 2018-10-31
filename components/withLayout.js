@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import Favicon from 'react-favicon';
 import stylesheet from 'styles/index.scss';
 import $ from 'jquery';
 
@@ -96,7 +95,6 @@ const withLayout = (WrappedComponent) => {
 
       return (
         <div>
-          <Favicon url="https://images.eatthisbeef.com/favicon.png, https://images.eatthisbeef.com/favicon.ico" />
           <Head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
             <meta name="description" content="DFW's most epic burger ranking publication of all time.  Feed your life-long burger quest in Dallas, TX." />
@@ -105,6 +103,8 @@ const withLayout = (WrappedComponent) => {
             <meta property="og:url" content="https://eatthisbeef.com/" />
             <meta property="og:site_name" content="Eat This Beef!" />
             <meta property="og:description" content="DFW's most epic burger ranking publication of all time.  Feed your life-long burger quest in Dallas, TX." />
+            <link rel="shortcut icon" href="https://images.eatthisbeef.com/favicon.png" type="image/x-icon" />
+            <link rel="shortcut icon" href="https://images.eatthisbeef.com/favicon.ico" type="image/x-icon" />
           </Head>
           { wowClass }
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
