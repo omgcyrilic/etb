@@ -21,7 +21,7 @@ class HoorableMention extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().order('asc').orderby('title').perPage(20).category(3);
+    const posts = await api.posts().order('asc').orderby('title').perPage(30).category(3);
     return { posts };
   }
 
@@ -31,7 +31,7 @@ class HoorableMention extends React.PureComponent {
     }
 
     this.setState({ loading: true});
-    const posts = await api.posts().order('asc').orderby('title').perPage(10).category(3).page(this.state.page + 1);
+    const posts = await api.posts().order('asc').orderby('title').perPage(30).category(3).page(this.state.page + 1);
     if (posts.length > 0) {
       this.setState({
         posts: this.state.posts.concat(posts),
@@ -47,7 +47,7 @@ class HoorableMention extends React.PureComponent {
   }
 
   getTotalPages = async () => {
-    await api.posts().order('asc').orderby('title').perPage(10).category(3).then((response) => {
+    await api.posts().order('asc').orderby('title').perPage(30).category(3).then((response) => {
       this.setState({
         totalPages: response._paging.totalPages
       });

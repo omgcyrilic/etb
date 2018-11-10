@@ -31,7 +31,7 @@ class Home extends React.PureComponent {
     }
 
     this.setState({ loading: true});
-    const posts = await api.posts().perPage(10).page(this.state.page + 1).order('desc').orderby('date');
+    const posts = await api.posts().perPage(30).page(this.state.page + 1).order('desc').orderby('date');
     if (posts.length > 0) {
       this.setState({
         posts: this.state.posts.concat(posts),
@@ -50,7 +50,7 @@ class Home extends React.PureComponent {
   }
 
   getTotalPages = async () => {
-    await api.posts().perPage(10).page(1).then((response) => {
+    await api.posts().perPage(30).page(1).then((response) => {
       this.setState({
         totalPages: response._paging.totalPages
       });

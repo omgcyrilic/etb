@@ -21,7 +21,7 @@ class Fail extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().order('asc').orderby('title').perPage(20).category(4);
+    const posts = await api.posts().order('asc').orderby('title').perPage(30).category(4);
     return { posts };
   }
 
@@ -31,7 +31,7 @@ class Fail extends React.PureComponent {
     }
 
     this.setState({ loading: true});
-    const posts = await api.posts().order('asc').orderby('title').perPage(10).category(4).page(this.state.page + 1);
+    const posts = await api.posts().order('asc').orderby('title').perPage(30).category(4).page(this.state.page + 1);
     if (posts.length > 0) {
       this.setState({
         posts: this.state.posts.concat(posts),
@@ -47,7 +47,7 @@ class Fail extends React.PureComponent {
   }
 
   getTotalPages = async () => {
-    await api.posts().order('asc').orderby('title').perPage(10).category(4).then((response) => {
+    await api.posts().order('asc').orderby('title').perPage(30).category(4).then((response) => {
       this.setState({
         totalPages: response._paging.totalPages
       });

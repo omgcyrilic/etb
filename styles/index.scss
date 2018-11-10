@@ -24,9 +24,16 @@ html {
   }
 }
 a {
-  color: $bright-yellow;
-  border-bottom: 2px solid $bright-yellow;
+  background-color: transparent;
+  border-bottom: 3px solid $bright-yellow;
+  box-shadow: inset 0 -4px 0 $bright-yellow;
+  color: $baby-powder;
   text-decoration: none;
+  transition: background .15s cubic-bezier(0.33, 0.66, 0.66, 1);
+  &:hover {
+    background-color: $bright-yellow;
+    color: $mine-shaft;
+  }
 }
 button {
   outline: none;
@@ -348,6 +355,7 @@ input[name="etb-input"]:focus {
     }
     &.closed {
       border: 2px solid $tractor-red;
+      min-height: 310px;
       > a {
         > h2 {
           margin-top: 10px;
@@ -369,6 +377,10 @@ input[name="etb-input"]:focus {
       content: "";
       flex: auto;
     }
+    > a {
+      color: $bright-yellow;
+      box-shadow: none;
+    }
     h2 {
       margin: 0;
     }
@@ -379,7 +391,11 @@ input[name="etb-input"]:focus {
       margin: 10px 0;
       a {
         color: $tractor-red;
-        border-bottom: 2px solid $tractor-red;
+        border-bottom: none;
+        box-shadow: inset 0 -4px 0 $tractor-red;
+        &:hover {
+          background: transparent;
+        }
       }
     }
     .copy {

@@ -140,6 +140,7 @@ aside {
   }
   .menu__item {
     border-bottom: none;
+    box-shadow: none;
     color: $mine-shaft;
     font-family: 'gilroy';
     margin-bottom: 20px;
@@ -147,6 +148,7 @@ aside {
     font-size: 2.6875rem;
     transition: all .4s ease;
     &:hover {
+      background: transparent;
       color: $bright-yellow;
       transition: all .4s ease;
       cursor: pointer
@@ -227,10 +229,14 @@ aside {
   }
   .search {
     border-bottom: 0;
+    box-shadow: none;
     left: 20px;
     position: absolute;
     top: 23px;
     z-index: 2;
+    &:hover {
+      background: transparent;
+    }
   }
   .pinned-search {
     display: none;
