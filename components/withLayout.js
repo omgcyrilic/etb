@@ -104,6 +104,7 @@ const withLayout = (WrappedComponent) => {
             <meta property="og:site_name" content="Eat This Beef!" />
             <meta property="og:description" content="DFW's most epic burger ranking publication of all time.  Feed your life-long burger quest in Dallas, TX." />
             <link rel="shortcut icon" href="https://images.eatthisbeef.com/favicon.png" type="image/x-icon" />
+            <link rel="manifest" href="/static/manifest.json"/>
           </Head>
           { wowClass }
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
