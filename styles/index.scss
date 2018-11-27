@@ -11,6 +11,7 @@ html {
   background-color: $maastricht-blue;
   color: $baby-powder;
   font-family: 'roboto';
+  overflow-y: overlay;
   ::selection {
     background: $aquamarine;
   }
@@ -327,7 +328,7 @@ input[name="etb-input"]:focus {
 .restaurant-list {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 40px 70px 0;
+  margin: 0 55px 70px 0;
   .restaurant {
     background: $baby-powder;
     border: 2px solid transparent;

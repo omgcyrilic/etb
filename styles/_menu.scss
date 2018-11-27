@@ -223,8 +223,11 @@ aside {
   .nav__inner {
     button {
       position: absolute;
-      right: 0;
+      right: 15px;
       top: 5px;
+      &.open {
+        right: 0;
+      }
     }
   }
   .search {

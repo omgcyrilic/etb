@@ -57,14 +57,10 @@ const withLayout = (WrappedComponent) => {
           $(window).scrollTop() > 650 ? top || ($('nav').hide().stop().fadeIn(300).css({
             position: 'fixed',
             top: '15px',
-          }).find('.logo-burger').css({
-            display: 'inline-block'
           }),
           top = !0) : ($('nav').css({
             position: 'absolute',
             top: '0'
-          }).find('.logo-burger').css({
-            display: 'none'
           }),
           top = !1);
         });
