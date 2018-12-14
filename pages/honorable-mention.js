@@ -60,7 +60,7 @@ class HoorableMention extends React.PureComponent {
     });
     this.getTotalPages();
   };
-  
+
   componentDidMount() {
     if(!isServer) {
       window.WOW = require('wowjs');
@@ -144,7 +144,7 @@ class HoorableMention extends React.PureComponent {
                   <img src={'https://images.eatthisbeef.com/' + post.imgthumb}/>
                 </button>
                 <div className={'copy'}>
-                  <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                
+                  <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
                 </div>
               </section>
             ))

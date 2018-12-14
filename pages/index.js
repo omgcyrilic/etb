@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import api from '../api';
 import withLayout from '../components/withLayout';
+import LazyLoad from 'react-lazyload';
 import { Link } from '../routes';
 import { buildImageaArray, getClosedClass, dateDisplay, getCategoryTag, getGoogleMapsUrl } from '/components/helpers';
 
@@ -129,7 +130,9 @@ class Home extends React.PureComponent {
           {
             posts.map(post => (
               <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
-                <img src={'https://images.eatthisbeef.com/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
+                <LazyLoad height={50}>
+                  <img src={'https://images.eatthisbeef.com/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
+                </LazyLoad>
                 <Link route={`/restaurant/${post.slug}`}>
                   <a>
                     <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
@@ -139,11 +142,15 @@ class Home extends React.PureComponent {
                   <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
                 </div>
                 <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
-                  <img src={'https://images.eatthisbeef.com/zoom.png'} className={'zoom'} />
-                  <img src={'https://images.eatthisbeef.com/' + post.imgthumb} />
+                  <LazyLoad height={50}>
+                    <img src={'https://images.eatthisbeef.com/zoom.png'} className={'zoom'} />
+                  </LazyLoad>
+                  <LazyLoad height={100}>
+                    <img src={'https://images.eatthisbeef.com/' + post.imgthumb} />
+                  </LazyLoad>
                 </button>
                 <div className={'copy'}>
-                  <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                
+                  <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
                 </div>
                 <div className={'date'}>Masticated in: {dateDisplay(post.date)}</div>
               </section>

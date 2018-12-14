@@ -24,7 +24,7 @@ class TopTen extends React.PureComponent {
     this.setState({
       posts: this.props.posts
     });
-  };  
+  };
 
   componentDidMount() {
     if (!isServer) {
@@ -36,7 +36,7 @@ class TopTen extends React.PureComponent {
       window.wow.init();
     }
   }
-  
+
   componentDidUpdate() {
     if (!isServer) {
       window.wow.sync();
@@ -109,7 +109,7 @@ class TopTen extends React.PureComponent {
                   <img src={'https://images.eatthisbeef.com/' + post.imgthumb}/>
                 </button>
                 <div className={'copy'}>
-                  <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                
+                  <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
                 </div>
               </section>
             ))

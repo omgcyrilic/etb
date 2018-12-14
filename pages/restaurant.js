@@ -98,7 +98,7 @@ class Restaurant extends React.PureComponent {
               <img src={'https://images.eatthisbeef.com/' + post.imgthumb}/>
             </button>
             <div className={'copy'}>
-              <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                
+              <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
             </div>
           </section>
         </section>

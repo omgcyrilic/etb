@@ -40,12 +40,12 @@ class Search extends React.PureComponent {
     });
     return { posts };
   }
-  
+
   componentWillMount() {
     this.setState({
       posts: this.props.posts
     });
-  };  
+  };
 
   componentDidMount() {
     const node = this.myRef.current;
@@ -60,7 +60,7 @@ class Search extends React.PureComponent {
       window.wow.init();
     }
   }
-  
+
   componentDidUpdate() {
     if (!isServer) {
       window.wow.sync();
@@ -88,7 +88,7 @@ class Search extends React.PureComponent {
     }
     else if (restaurantList) {
       let top = restaurantList.offset().top - 36;
-      if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
+      if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {
         window.setTimeout(function() {
           $('html, body').animate({ scrollTop: top });
         }, 0);
@@ -184,7 +184,7 @@ class Search extends React.PureComponent {
                     <img src={'https://images.eatthisbeef.com/' + post.imgthumb}/>
                   </button>
                   <div className={'copy'}>
-                    <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />                
+                    <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
                   </div>
                 </section>
               ))
