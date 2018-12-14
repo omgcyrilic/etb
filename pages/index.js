@@ -2,9 +2,9 @@ import React from 'react';
 import Waypoint from 'react-waypoint';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import Link from 'next/link';
 import api from '../api';
 import withLayout from '../components/withLayout';
+import { Link } from '../routes';
 import { buildImageaArray, getClosedClass, dateDisplay, getCategoryTag, getGoogleMapsUrl } from '/components/helpers';
 
 const isServer = typeof window === 'undefined';
@@ -130,15 +130,7 @@ class Home extends React.PureComponent {
             posts.map(post => (
               <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
                 <img src={'https://images.eatthisbeef.com/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
-                <Link
-                  href={{
-                    pathname: '/restaurant',
-                    query: {
-                      slug: post.slug,
-                    },
-                  }}
-                  as={`/restaurant/${post.slug}`}
-                >
+                <Link route={`/restaurant/${post.slug}`}>
                   <a>
                     <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                   </a>
