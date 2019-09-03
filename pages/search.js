@@ -1,11 +1,11 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import Link from 'next/link';
 import api from '../api';
 import withLayout from '../components/withLayout';
 import { DebounceInput } from 'react-debounce-input';
 import { buildImageaArray, getClosedClass, dateDisplay, getCategoryTag, getGoogleMapsUrl } from '/components/helpers';
+import { Link } from '../routes';
 import $ from 'jquery';
 
 let results = null;
@@ -151,6 +151,7 @@ class Search extends React.PureComponent {
             minLength={2}
             onChange={event => this.handleEvent(event)}
             placeholder='Search...'
+            autoFocus
           />
         </section>
         {!hasResults && searchTerm.length > 0 &&
