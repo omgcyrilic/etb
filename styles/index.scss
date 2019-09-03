@@ -349,10 +349,6 @@ input[name="etb-input"]:focus {
       h2 {
         color: $bright-yellow;
         font-size: 30px;
-        &:hover {
-          background-color: $bright-yellow;
-          color: $white;
-        }
       }
       .address {
         margin: 0 0 10px 0;
@@ -385,6 +381,10 @@ input[name="etb-input"]:focus {
     > a {
       color: $bright-yellow;
       box-shadow: none;
+      &:hover {
+        background-color: $bright-yellow;
+        color: $white;
+      }
     }
     h2 {
       margin: 0;
