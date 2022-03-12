@@ -1,4 +1,5 @@
 import React from 'react';
+import Lightbox from 'react-image-lightbox';
 import Waypoint from 'react-waypoint';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -9,7 +10,6 @@ import { Link } from '../routes';
 import { buildImageaArray, getClosedClass, dateDisplay, getCategoryTag, getGoogleMapsUrl } from '/components/helpers';
 
 const isServer = typeof window === 'undefined';
-const Lightbox = dynamic(import('react-image-lightbox'));
 
 class Home extends React.PureComponent {
   state = {

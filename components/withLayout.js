@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import stylesheet from 'styles/index.scss';
+// import stylesheet from 'styles/index.scss';
 import $ from 'jquery';
 
 let isServer = typeof window === 'undefined';
