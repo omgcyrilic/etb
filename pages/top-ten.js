@@ -16,14 +16,14 @@ class TopTen extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().order('asc').orderby('menu_order').category(2).embed();
+    const posts = [];// await api.posts().order('asc').orderby('menu_order').category(2).embed();
     return { posts };
   }
 
   componentWillMount() {
-    this.setState({
-      posts: this.props.posts
-    });
+    // this.setState({
+    //   posts: this.props.posts
+    // });
   };
 
   componentDidMount() {
@@ -58,9 +58,9 @@ class TopTen extends React.PureComponent {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'https://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
+          {/* <meta property="og:image" content={'https://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} /> */}
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'https://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
+          {/* <meta name="twitter:image" content={'https://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} /> */}
         </Head>
         <h1 className={'wow fadeInDown'}>THE TOP TEN</h1>
         <h3 className={'wow fadeInDown'}>The best of the best in Dallas Texas</h3>
@@ -86,6 +86,10 @@ class TopTen extends React.PureComponent {
         )}
         <section className={'restaurant-list'}>
           {
+              <h4 className='error wow fadeInDown'>
+              APi ERROR.
+            </h4>
+          /* {
             posts.map(post => (
               <section key={post.id} className={'restaurant wow fadeInUp'} data-wow-duration=".5s" data-wow-offset="10">
                 <Link
@@ -112,7 +116,7 @@ class TopTen extends React.PureComponent {
                   <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
                 </div>
               </section>
-            ))
+            )) }*/
           }
         </section>
       </div>

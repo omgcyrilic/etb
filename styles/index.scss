@@ -45,6 +45,12 @@ h2,
 h3,
 h4 {
   font-family: 'gilroy';
+
+  &.error {
+    color: $tractor-red;
+    padding: 40px 0 0 55px;
+    width: auto;
+  }
 }
 h1 {
   color: $turquoise;

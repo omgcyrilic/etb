@@ -27,7 +27,7 @@ class Search extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts();
+    const posts = [] //await api.posts();
     return { posts };
   }
 
@@ -162,27 +162,32 @@ class Search extends React.PureComponent {
         {hasResults &&
           <section className={'restaurant-list'}>
             {
-            posts.map(post => (
-              <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
-                <img src={'https://images.eatthisbeef.com/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
-                <Link route={`/restaurant/${post.slug}`}>
-                  <a>
-                    <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                  </a>
-                </Link>
-                <div className={'address'}>
-                  <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
-                </div>
-                <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
-                  <img src={'https://images.eatthisbeef.com/zoom.png'} className={'zoom'} />
-                  <img src={'https://images.eatthisbeef.com/' + post.imgthumb} />
-                </button>
-                <div className={'copy'}>
-                  <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-                </div>
-                <div className={'date'}>Masticated in: {dateDisplay(post.date)}</div>
-              </section>
-            ))
+              posts && posts.length === 0 && (
+                <h4 className='error wow fadeInDown'>
+                  APi ERROR.
+                </h4>
+              )
+            // posts.map(post => (
+            //   <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
+            //     <img src={'https://images.eatthisbeef.com/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
+            //     <Link route={`/restaurant/${post.slug}`}>
+            //       <a>
+            //         <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+            //       </a>
+            //     </Link>
+            //     <div className={'address'}>
+            //       <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
+            //     </div>
+            //     <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
+            //       <img src={'https://images.eatthisbeef.com/zoom.png'} className={'zoom'} />
+            //       <img src={'https://images.eatthisbeef.com/' + post.imgthumb} />
+            //     </button>
+            //     <div className={'copy'}>
+            //       <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+            //     </div>
+            //     <div className={'date'}>Masticated in: {dateDisplay(post.date)}</div>
+            //   </section>
+            // ))
             }
           </section>
         }

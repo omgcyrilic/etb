@@ -22,7 +22,8 @@ class Home extends React.PureComponent {
   }
 
   static async getInitialProps() {
-    const posts = await api.posts().perPage(20).page(1).order('desc').orderby('date');
+    console.log(api)
+    const posts = [];// await api.posts(); //.perPage(20).page(1).order('desc').orderby('date');
     return { posts };
   }
 
@@ -32,7 +33,7 @@ class Home extends React.PureComponent {
     }
 
     this.setState({ loading: true});
-    const posts = await api.posts().perPage(30).page(this.state.page + 1).order('desc').orderby('date');
+    const posts = [];//await api.posts().perPage(30).page(this.state.page + 1).order('desc').orderby('date');
     if (posts.length > 0) {
       this.setState({
         posts: this.state.posts.concat(posts),
@@ -50,22 +51,19 @@ class Home extends React.PureComponent {
     }
   }
 
-  getTotalPages = async () => {
-    await api.posts().perPage(30).page(1).then((response) => {
-      this.setState({
-        totalPages: response._paging.totalPages
-      });
-    });
-  }
+  // getTotalPages = async () => {
+  //   await api.posts().perPage(30).page(1).then((response) => {
+  //     this.setState({
+  //       totalPages: response._paging.totalPages
+  //     });
+  //   });
+  // }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({
       posts: this.props.posts
     });
-    this.getTotalPages();
-  };
 
-  componentDidMount() {
     if (!isServer) {
       window.WOW = require('wowjs');
       window.wow = new WOW.WOW({
@@ -96,9 +94,9 @@ class Home extends React.PureComponent {
         <Head>
           <title>{title}</title>
           <meta property="og:title" content={title} />
-          <meta property="og:image" content={'https://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
+          {/* <meta property="og:image" content={'https://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} /> */}
           <meta name="twitter:title" content={title} />
-          <meta name="twitter:image" content={'https://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} />
+          {/* <meta name="twitter:image" content={'https://images.eatthisbeef.com/' + posts.map(post => (post.img))[0]} /> */}
         </Head>
         <section>
           <img src={'https://images.eatthisbeef.com/logo.png'} className={'logo wow fadeInDown'} />
@@ -128,33 +126,38 @@ class Home extends React.PureComponent {
         )}
         <section className={'restaurant-list'}>
           {
-            posts.map(post => (
-              <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
-                <LazyLoad height={50}>
-                  <img src={'https://images.eatthisbeef.com/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
-                </LazyLoad>
-                <Link route={`/restaurant/${post.slug}`}>
-                  <a>
-                    <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                  </a>
-                </Link>
-                <div className={'address'}>
-                  <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
-                </div>
-                <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
-                  <LazyLoad height={50}>
-                    <img src={'https://images.eatthisbeef.com/zoom.png'} className={'zoom'} />
-                  </LazyLoad>
-                  <LazyLoad height={100}>
-                    <img src={'https://images.eatthisbeef.com/' + post.imgthumb} />
-                  </LazyLoad>
-                </button>
-                <div className={'copy'}>
-                  <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-                </div>
-                <div className={'date'}>Masticated in: {dateDisplay(post.date)}</div>
-              </section>
-            ))
+            posts && posts.length === 0 && (
+              <h4 className='error wow fadeInDown'>
+                APi ERROR.
+              </h4>
+            )
+            // posts.map(post => (
+            //   <section key={post.id} className={'restaurant wow fadeInUp ' + getClosedClass(post.closed)} data-wow-duration=".5s" data-wow-offset="10">
+            //     <LazyLoad height={50}>
+            //       <img src={'https://images.eatthisbeef.com/tags/' + getCategoryTag(post.section, post.rank) + '.png'} className={'tag'}/>
+            //     </LazyLoad>
+            //     <Link route={`/restaurant/${post.slug}`}>
+            //       <a>
+            //         <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+            //       </a>
+            //     </Link>
+            //     <div className={'address'}>
+            //       <a href={getGoogleMapsUrl(post)} target="_blank">{post.addressstreet + ', ' + post.addresscity + ', ' + post.addressstate}</a>
+            //     </div>
+            //     <button className={'img-thumb'} onClick={() => this.initializeLightbox(post)}>
+            //       <LazyLoad height={50}>
+            //         <img src={'https://images.eatthisbeef.com/zoom.png'} className={'zoom'} />
+            //       </LazyLoad>
+            //       <LazyLoad height={100}>
+            //         <img src={'https://images.eatthisbeef.com/' + post.imgthumb} />
+            //       </LazyLoad>
+            //     </button>
+            //     <div className={'copy'}>
+            //       <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+            //     </div>
+            //     <div className={'date'}>Masticated in: {dateDisplay(post.date)}</div>
+            //   </section>
+            // ))
           }
         </section>
         {this.state.page < this.state.totalPages && this.state.hasMore && <Waypoint key={this.state.page} onEnter={this.loadMore} />}

@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-// import stylesheet from 'styles/index.scss';
 import $ from 'jquery';
 
 let isServer = typeof window === 'undefined';
@@ -86,7 +85,7 @@ const withLayout = (WrappedComponent) => {
       let wowClass;
       if (!isServer) {
         /* eslint-disable quotes */
-        wowClass = <style jsx global>{` .restaurant.wow { visibility: hidden } `}</style>;
+        // wowClass = <style jsx global>{` .restaurant.wow { visibility: hidden } `}</style>;
       }
 
       return (
@@ -100,10 +99,10 @@ const withLayout = (WrappedComponent) => {
             <meta property="og:site_name" content="Eat This Beef!" />
             <meta property="og:description" content="DFW's most epic burger ranking publication of all time.  Feed your life-long burger quest in Dallas, TX." />
             <link rel="shortcut icon" href="https://images.eatthisbeef.com/favicon.png" type="image/x-icon" />
-            <link rel="manifest" href="/static/manifest.json"/>
+            <link rel="manifest" href="/manifest.json"/>
           </Head>
           { wowClass }
-          <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+          {/* <style dangerouslySetInnerHTML={{ __html: stylesheet }} /> */}
           <aside>
             <div className={'menu'}>
               <Link href="/"><a className={'menu__item'}>Home</a></Link>

@@ -1,6 +1,6 @@
-import WPAPI from 'wpapi';
+import WPAPI from 'wpapi'
 
-let endpoint = 'https://api.eatthisbeef.com/wp-json';
+const endpoint = 'https://api.eatthisbeef.com/index.php/wp-json/wp/v2/posts'
 
-const api = new WPAPI({ endpoint });
-export default api;
+const api = new WPAPI({ endpoint })
+export default api
